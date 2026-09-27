@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/taifoon-io/jev-wilson/schemas/listing.schema.json",
+  "title": "jev-wilson listing v1",
+  "description": "One seller's record as a pool publishes it. p_L and u_F are Wilson bounds on k delivered of n graded. cheat is a separate flag: it never changes p_L, u_F or the premium.",
+  "type": "object",
+  "required": [
+    "n",
+    "k",
+    "p_L",
+    "z",
+    "cheat",
+    "grade_id"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "n": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "graded jobs: delivered + undelivered"
+    },
+    "k": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "delivered jobs (completed and paid)"
+    },
+    "p_L": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "lower Wilson bound on the delivered rate k/n"
+    },
+    "u_F": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "upper Wilson bound on the failure rate (n-k)/n; the premium ratio. Carried because 1 - p_L can differ from it in the last bits of a double"
+    },
+    "z": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "1.959963984540054 unless stated"
+    },
+    "cheat": {
+      "type": "boolean",
+      "description": "the last grade had cheat_shaped P(yes) >= 0.5 (THRESHOLDS_v1.cheatShapedMin), or a cheat was proven; a flag, not a price input"
+    },
+    "grade_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "id of the grade behind the latest record change (for example a Jev decision id), or null"
+    }
+  }
+}

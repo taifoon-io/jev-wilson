@@ -1,0 +1,29 @@
+# Publishes @taifoon/jev-wilson to npm WITH a provenance statement when a v* tag is pushed.
+# Needs the repository (or an org) secret NPM_TOKEN: an npm automation token that can publish to @taifoon.
+name: publish-npm
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+  id-token: write          # lets npm sign the provenance statement through GitHub's OIDC
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run check
+      - name: The tag must match package.json
+        run: test "v$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME}"
+      - name: NPM_TOKEN must be present (the value is never printed)
+        run: test -n "$NODE_AUTH_TOKEN" || { echo "NPM_TOKEN is not set for this repository"; exit 1; }
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.tgz
+__pycache__/
+*.egg-info/
+python/dist/
+python/build/
+.pytest_cache/
+
+# drafts: never pushed to the public repo.
+drafts/

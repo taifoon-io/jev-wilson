@@ -1,0 +1,104 @@
+{
+  "$comment": "One real job on the accept path, and the premium Wilson sets for the same seller's next job. Every number is read from Base or from the live layer; tests recompute the premium fields.",
+  "jev_model": "jev-1.13.0",
+  "rubric_hash": "0x129dfc81338f238adba7566c1f9c2a72769168edd0fd8251a34a81a90ea3eb97",
+  "job": {
+    "chain": "Base (8453)",
+    "hook": "0xc0578657Eda85e0a246771aa1839ce79b54eE80d",
+    "token": {
+      "symbol": "GLMR",
+      "address": "0xB3846fD356c2149ee8D30b0449088Dc74e265459",
+      "decimals": 18
+    },
+    "job_id": "0x5bf26c8eece0ca8a7cd3df7389860e323291b002f7e6ab6ce07470bf73a7027d",
+    "buyer": "0x90Db8Fb40a3429233B2a3ce5D143F3EdBca764bb",
+    "seller": "0xdcA0F0166bbc52a94073781d3971D8aA1938ef20",
+    "pool": "0x2F8e5378a2d850A18D857Ad8ad30F242B89E3a58",
+    "price": "10000000000000000000",
+    "premium_paid": "100000000000000000",
+    "premium_note": "0.1 GLMR was a fixed pilot figure. The seller had no record before this job, so Wilson would have returned UNKNOWN.",
+    "deposit": "12000000000000000001",
+    "evidence_digest": "0x432872327170eee40585de07538fba8e745a00ee9f4c0518c127adb00de372ec",
+    "money_path": [
+      {
+        "step": "fund",
+        "tx": "0xfbe436ced5caf66dde0e96033f041480316fc5f62cd273006ad9c1852a57f193",
+        "block": 51823381,
+        "link": "https://basescan.org/tx/0xfbe436ced5caf66dde0e96033f041480316fc5f62cd273006ad9c1852a57f193",
+        "transfers": [
+          {
+            "from": "buyer",
+            "to": "hook",
+            "amount": "10100000000000000000",
+            "is": "price + premium"
+          },
+          {
+            "from": "seller",
+            "to": "hook",
+            "amount": "12000000000000000001",
+            "is": "deposit"
+          }
+        ]
+      },
+      {
+        "step": "submit",
+        "tx": "0x3c5afe1278a28894726a70263a253cf307211edda444750fb87d6b7ecfce428b",
+        "block": 51823467,
+        "link": "https://basescan.org/tx/0x3c5afe1278a28894726a70263a253cf307211edda444750fb87d6b7ecfce428b",
+        "transfers": []
+      },
+      {
+        "step": "complete",
+        "tx": "0xc606d00fed64e912585bbc93feb15a9289cfcde94289f49f7c74a7a468903116",
+        "block": 51823521,
+        "link": "https://basescan.org/tx/0xc606d00fed64e912585bbc93feb15a9289cfcde94289f49f7c74a7a468903116",
+        "transfers": [
+          {
+            "from": "hook",
+            "to": "seller",
+            "amount": "22000000000000000001",
+            "is": "price + deposit back"
+          },
+          {
+            "from": "hook",
+            "to": "pool",
+            "amount": "100000000000000000",
+            "is": "premium"
+          }
+        ]
+      }
+    ],
+    "grade": {
+      "by": null,
+      "grade_id": null,
+      "note": "Not graded by Jev: the buyer completed. On a graded job, grade(client, state) runs between submit and complete."
+    }
+  },
+  "next_premium": {
+    "source": "live POST https://coord.taifoon.dev/v1/pools/quote {seller, tenant: moonbeam, price: 10 GLMR}, 2026-09-27T12:49:00Z",
+    "fixture": "tests/fixtures/live/0xdca0f0166bbc52a94073781d3971d8aa1938ef20.moonbeam.json",
+    "k": 1,
+    "n": 1,
+    "price": "10000000000000000000",
+    "p_L": 0.20654931437723742,
+    "u_F": 0.7934506856227626,
+    "premium": "7934510000000000000",
+    "covered": false,
+    "reads": "One delivered job. The next premium is 79.3% of price, above the 0.30 cover rule, so no pool covers it yet."
+  },
+  "contrast": {
+    "source": "live POST https://coord.taifoon.dev/v1/pools/quote {seller, tenant: moonbeam, price: 10 GLMR}, 2026-09-27T12:43:54Z",
+    "fixture": "tests/fixtures/live/0xfcf0b00f8352dd193a671e40940c9a32396adb49.moonbeam.json",
+    "seller": "0xfcf0b00f8352dd193a671e40940c9a32396adb49",
+    "k": 60,
+    "n": 62,
+    "price": "10000000000000000000",
+    "p_L": 0.8897953040501456,
+    "u_F": 0.11020469594985441,
+    "premium": "1102050000000000000",
+    "covered": true,
+    "pool": "0x95951a4bF6F2f99131a5653060d5E8a24F6feb9e",
+    "reads": "Sixty delivered of 62. The next premium is 1.10205 GLMR on 10 GLMR, and the seller's pool covers it."
+  },
+  "recompute": "premium({ k: 1, n: 1 }, { price: 10n ** 19n }) and premium({ k: 60, n: 62 }, { price: 10n ** 19n })"
+}

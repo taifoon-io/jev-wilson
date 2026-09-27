@@ -1,0 +1,82 @@
+{
+  "name": "@taifoon/jev-wilson",
+  "version": "0.1.0",
+  "description": "Price assurance from a seller's record: the Wilson score interval on delivered and failed jobs, mapped to a coverage premium. TypeScript and Python, bit for bit. Optional grading with TypeSafe's Jev through @typesafe-ai/sdk.",
+  "license": "Apache-2.0",
+  "author": "Taifoon <taifooon@proton.me>",
+  "homepage": "https://github.com/taifoon-io/jev-wilson#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taifoon-io/jev-wilson.git"
+  },
+  "bugs": {
+    "url": "https://github.com/taifoon-io/jev-wilson/issues"
+  },
+  "keywords": [
+    "wilson-score",
+    "wilson-interval",
+    "confidence-interval",
+    "premium",
+    "insurance",
+    "underwriting",
+    "reputation",
+    "erc-8183",
+    "agentic-commerce",
+    "ai-agents",
+    "jev",
+    "typesafe",
+    "mcp"
+  ],
+  "type": "module",
+  "main": "./dist/wilson.js",
+  "types": "./dist/wilson.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/wilson.d.ts",
+      "default": "./dist/wilson.js"
+    },
+    "./mcp": {
+      "types": "./dist/mcp.d.ts",
+      "default": "./dist/mcp.js"
+    },
+    "./schemas/*": "./schemas/*",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "jev-wilson": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json && node scripts/fix-dts.mjs && chmod +x dist/cli.js",
+    "test": "node --experimental-strip-types --no-warnings --test tests/*.test.ts",
+    "check": "npm run build && tsc -p tsconfig.test.json && npm test",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "@typesafe-ai/sdk": "^0.6.0"
+  },
+  "peerDependenciesMeta": {
+    "@typesafe-ai/sdk": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@typesafe-ai/sdk": "^0.6.0",
+    "typescript": "^5.9.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

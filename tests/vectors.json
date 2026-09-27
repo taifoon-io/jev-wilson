@@ -1,0 +1,314 @@
+{
+ "note": "Every layer number is the Taifoon coordination layer’s own output. k = delivered (settled), n = k + incorrect. Regenerate only from the layer, never from this package.",
+ "z": 1.959963984540054,
+ "vectors": [
+  {
+   "id": "live:0x000000000000000000000000000000000000dead",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0x000000000000000000000000000000000000dead.json",
+   "fetched_at": "2026-09-27T12:44:09Z",
+   "seller": "0x000000000000000000000000000000000000dead",
+   "tenant": null,
+   "token": "USDC",
+   "k": 0,
+   "n": 0,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": null,
+    "premium": null,
+    "wilson_failure": null,
+    "insurable": false
+   }
+  },
+  {
+   "id": "live:0x430c298f9a4a145e5299af997287bb4f928b8059",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0x430c298f9a4a145e5299af997287bb4f928b8059.json",
+   "fetched_at": "2026-09-27T12:44:09Z",
+   "seller": "0x430c298f9a4a145e5299af997287bb4f928b8059",
+   "tenant": null,
+   "token": "USDC",
+   "k": 12,
+   "n": 58,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.8774851603050945,
+    "premium": "87748500",
+    "wilson_failure": [
+     0.6723078207851659,
+     0.8774851603050945
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0x4b33758d85678ea86cd875af8caf318462268ba8",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0x4b33758d85678ea86cd875af8caf318462268ba8.json",
+   "fetched_at": "2026-09-27T12:44:09Z",
+   "seller": "0x4b33758d85678ea86cd875af8caf318462268ba8",
+   "tenant": null,
+   "token": "USDC",
+   "k": 2319,
+   "n": 2323,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.00441925478901569,
+    "premium": "441900",
+    "wilson_failure": [
+     0.0006698151069176994,
+     0.00441925478901569
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0x4e368c8d099d68a6b87aa616e3db4940e0721d60",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0x4e368c8d099d68a6b87aa616e3db4940e0721d60.json",
+   "fetched_at": "2026-09-27T12:44:09Z",
+   "seller": "0x4e368c8d099d68a6b87aa616e3db4940e0721d60",
+   "tenant": null,
+   "token": "USDC",
+   "k": 138,
+   "n": 138,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.027082764465572957,
+    "premium": "2708300",
+    "wilson_failure": [
+     1.6877423686640271e-18,
+     0.027082764465572957
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0x7eb002ddf5a0f78b427a7569e4bfde3ffb433078",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0x7eb002ddf5a0f78b427a7569e4bfde3ffb433078.json",
+   "fetched_at": "2026-09-27T12:44:09Z",
+   "seller": "0x7eb002ddf5a0f78b427a7569e4bfde3ffb433078",
+   "tenant": null,
+   "token": "USDC",
+   "k": 162,
+   "n": 192,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.21429032103775156,
+    "premium": "21429000",
+    "wilson_failure": [
+     0.11169509188314192,
+     0.21429032103775156
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0x8938feda3f4b6f2ad6e241f888835416f3f50b86",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0x8938feda3f4b6f2ad6e241f888835416f3f50b86.json",
+   "fetched_at": "2026-09-27T12:44:09Z",
+   "seller": "0x8938feda3f4b6f2ad6e241f888835416f3f50b86",
+   "tenant": null,
+   "token": "USDC",
+   "k": 10,
+   "n": 12,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.4480308622529734,
+    "premium": "44803100",
+    "wilson_failure": [
+     0.04696514218385382,
+     0.4480308622529734
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0xc39e8b692381e4a3669a4b3d44b77110d2147263",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0xc39e8b692381e4a3669a4b3d44b77110d2147263.json",
+   "fetched_at": "2026-09-27T12:44:09Z",
+   "seller": "0xc39e8b692381e4a3669a4b3d44b77110d2147263",
+   "tenant": null,
+   "token": "USDC",
+   "k": 10,
+   "n": 10,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.2775327998628892,
+    "premium": "27753300",
+    "wilson_failure": [
+     0,
+     0.2775327998628892
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0xdca0f0166bbc52a94073781d3971d8aa1938ef20:moonbeam",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0xdca0f0166bbc52a94073781d3971d8aa1938ef20.moonbeam.json",
+   "fetched_at": "2026-09-27T12:49:00Z",
+   "seller": "0xdca0f0166bbc52a94073781d3971d8aa1938ef20",
+   "tenant": "moonbeam",
+   "token": "GLMR",
+   "k": 1,
+   "n": 1,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": 0.7934506856227626,
+    "premium": "7934510000000000000",
+    "wilson_failure": [
+     0,
+     0.7934506856227626
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0xfcf0b00f8352dd193a671e40940c9a32396adb49:moonbeam",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/0xfcf0b00f8352dd193a671e40940c9a32396adb49.moonbeam.json",
+   "fetched_at": "2026-09-27T12:43:54Z",
+   "seller": "0xfcf0b00f8352dd193a671e40940c9a32396adb49",
+   "tenant": "moonbeam",
+   "token": "GLMR",
+   "k": 60,
+   "n": 62,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": 0.11020469594985441,
+    "premium": "1102050000000000000",
+    "wilson_failure": [
+     0.008891371499816638,
+     0.11020469594985441
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "plan:0/0@100000000",
+   "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
+   "k": 0,
+   "n": 0,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": null,
+    "premium": null,
+    "wilson_failure": null,
+    "insurable": false
+   }
+  },
+  {
+   "id": "plan:0/0@10000000000000000000",
+   "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
+   "k": 0,
+   "n": 0,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": null,
+    "premium": null,
+    "wilson_failure": null,
+    "insurable": false
+   }
+  },
+  {
+   "id": "plan:10/10@100000000",
+   "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
+   "k": 10,
+   "n": 10,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.2775327998628892,
+    "premium": "27753300",
+    "wilson_failure": [
+     0,
+     0.2775327998628892
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "plan:10/10@10000000000000000000",
+   "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
+   "k": 10,
+   "n": 10,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": 0.2775327998628892,
+    "premium": "2775330000000000000",
+    "wilson_failure": [
+     0,
+     0.2775327998628892
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "plan:9/10@100000000",
+   "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
+   "k": 9,
+   "n": 10,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.4041500267952385,
+    "premium": "40415000",
+    "wilson_failure": [
+     0.01787621309507289,
+     0.4041500267952385
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "plan:9/10@10000000000000000000",
+   "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
+   "k": 9,
+   "n": 10,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": 0.4041500267952385,
+    "premium": "4041500000000000000",
+    "wilson_failure": [
+     0.01787621309507289,
+     0.4041500267952385
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "plan:90/100@100000000",
+   "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
+   "k": 90,
+   "n": 100,
+   "price": "100000000",
+   "layer": {
+    "premium_ratio": 0.17436566150491348,
+    "premium": "17436600",
+    "wilson_failure": [
+     0.055229137060675094,
+     0.17436566150491348
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "plan:90/100@10000000000000000000",
+   "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
+   "k": 90,
+   "n": 100,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": 0.17436566150491348,
+    "premium": "1743660000000000000",
+    "wilson_failure": [
+     0.055229137060675094,
+     0.17436566150491348
+    ],
+    "insurable": true
+   }
+  }
+ ]
+}

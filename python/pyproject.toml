@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taifoon-jev-wilson"
+version = "0.1.0"
+description = "Price assurance from a seller's record: the Wilson score interval on delivered and failed jobs, mapped to a coverage premium. Bit for bit with the TypeScript package."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "Taifoon", email = "taifooon@proton.me" }]
+keywords = ["wilson-score", "wilson-interval", "confidence-interval", "premium", "insurance", "underwriting", "reputation", "erc-8183", "agentic-commerce", "jev", "typesafe"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = []
+
+[project.optional-dependencies]
+jev = ["typesafe-sdk>=0.7.2"]
+
+[project.urls]
+Homepage = "https://github.com/taifoon-io/jev-wilson"
+Source = "https://github.com/taifoon-io/jev-wilson"
+Issues = "https://github.com/taifoon-io/jev-wilson/issues"
+
+[tool.setuptools]
+packages = ["taifoon_jev_wilson"]
