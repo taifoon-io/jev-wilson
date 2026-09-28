@@ -39,7 +39,7 @@ The 9/10 and 90/100 sellers deliver at the same rate. The shorter record costs 2
 
 ## What it matches
 
-`premium({ k, n }, { price })` returns the same ratio and amount as `POST https://coord.taifoon.dev/v1/pools/quote`. The tests hold 9 live quotes, the plan's rows, and a grid of 1,971 records. TypeScript and Python agree bit for bit. See `schemas/wilson-premium-v1.md` for the curve and the four places it differs from the first plan (z, which bound, rounding, `0/0`).
+`premium({ k, n }, { price })` returns the same ratio and amount as `POST https://coord.taifoon.dev/v1/pools/quote`. The tests hold live quotes, the plan's rows, and a grid of records. TypeScript and Python agree bit for bit. See `schemas/wilson-premium-v1.md` for the curve and the four places it differs from the first plan (z, which bound, rounding, `0/0`).
 
 ## Grading is optional
 
@@ -58,6 +58,30 @@ Python: `pip install "taifoon-jev-wilson[jev] @ git+https://github.com/taifoon-i
 
 The rubric is frozen in `schemas/rubric-v1.json` (hash `0x129dfc81338f238adba7566c1f9c2a72769168edd0fd8251a34a81a90ea3eb97`).
 
+## Solidity
+
+`solidity/src/WilsonPremium.sol` is the same curve as a pure library (no storage, no external calls, integers only):
+`premium(price, incorrect, total)`, `ratioE6`, `covered`, `upperBound` (WAD, rounded up) and a non-reverting `quote`. It
+takes the record as a contract sees it, `incorrect` of `total`. A record with no delivered job reverts `WilsonUnknown()`,
+the TypeScript's UNKNOWN. The library has not been audited: review it before it guards funds.
+
+```sol
+import {WilsonPremium} from "@taifoon/jev-wilson/solidity/src/WilsonPremium.sol";
+
+WilsonPremium.premium(10e18, 2, 62);   // 1102050000000000000, the TypeScript's number to the wei
+```
+
+It evaluates the bound in fixed point at 1e30 with z exact, then rounds to millionths as the TypeScript does. On every
+row of `tests/vectors/premium-grid.json` (every record with up to 300 jobs, the longer records of `tests/grid.json` and the live quotes,
+prices from 1 unit to 1e27) the premium, the millionths ratio and the cover flag equal the TypeScript's: difference 0. The
+same file is checked by the TypeScript and Python tests, so the three languages read one set of numbers.
+
+```sh
+npm test              # TypeScript, Python, then forge test (each skipped with a note if its tool is missing)
+npm run test:ffi      # also fuzzes the Solidity against the TypeScript through vm.ffi
+npm run vectors       # regenerates tests/vectors/premium-grid.json from src/wilson.ts
+```
+
 ## MCP
 
 ```sh
@@ -72,7 +96,8 @@ A stdio MCP server with three tools: `wilson_lower`, `premium`, `listing`. No ne
 - `schemas/`: `rubric-v1.json`, `wilson-premium-v1.md`, `listing.schema.json`
 - `examples/job-accept.json`: one real job on Base, and the premium for its seller's next job
 - `examples/grade-and-price.ts`: `@typesafe-ai/sdk` grades, this package prices
-- `tests/`: TypeScript and Python, on the same vectors
+- `solidity/`: `WilsonPremium.sol` and its Foundry tests (golden grid, fuzz, optional FFI against the TypeScript)
+- `tests/`: TypeScript and Python, on the same vectors; `tests/vectors/premium-grid.json` is shared with the Solidity tests
 
 ## Licence
 

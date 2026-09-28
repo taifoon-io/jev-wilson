@@ -1,6 +1,6 @@
 {
   "name": "@taifoon/jev-wilson",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Price assurance from a seller's record: the Wilson score interval on delivered and failed jobs, mapped to a coverage premium. TypeScript and Python, bit for bit. Optional grading with TypeSafe's Jev through @typesafe-ai/sdk.",
   "license": "Apache-2.0",
   "author": "Taifoon <taifooon@proton.me>",
@@ -48,6 +48,7 @@
   "files": [
     "dist",
     "schemas",
+    "solidity/src",
     "examples",
     "README.md",
     "LICENSE"
@@ -58,7 +59,12 @@
   "sideEffects": false,
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json && node scripts/fix-dts.mjs && chmod +x dist/cli.js",
-    "test": "node --experimental-strip-types --no-warnings --test tests/*.test.ts",
+    "test": "bash scripts/test-all.sh",
+    "test:ts": "node --experimental-strip-types --no-warnings --test tests/*.test.ts",
+    "test:py": "python3 -m pytest tests -q -rs",
+    "test:sol": "cd solidity && forge test",
+    "test:ffi": "cd solidity && WILSON_FFI=1 forge test --ffi",
+    "vectors": "node --experimental-strip-types --no-warnings scripts/gen-premium-grid.ts",
     "check": "npm run build && tsc -p tsconfig.test.json && npm test",
     "prepack": "npm run build"
   },

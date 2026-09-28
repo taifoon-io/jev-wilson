@@ -150,3 +150,22 @@ def test_example_job_accept():
         assert wilson_lower(row["k"], row["n"]) == row["p_L"]
     fund, _, complete = ex["job"]["money_path"]
     assert sum(int(t["amount"]) for t in fund["transfers"]) == sum(int(t["amount"]) for t in complete["transfers"])
+
+
+PG = load("vectors/premium-grid.json")
+
+
+def test_premium_grid_python_equals_typescript():
+    """tests/vectors/premium-grid.json is the one truth TypeScript, Python and Solidity read."""
+    assert PG["z"] == Z and PG["rows"] >= 45451
+    for i in range(PG["rows"]):
+        total, incorrect = PG["total"][i], PG["incorrect"][i]
+        p = premium({"k": total - incorrect, "n": total}, price=int(PG["price"][i]))
+        if not PG["insurable"][i]:
+            assert p["insurable"] is False and incorrect == total, i
+            continue
+        assert p["insurable"] is True, i
+        assert p["ratio"] == PG["ratio"][i], i
+        assert js_round(p["ratio"] * 1_000_000) == PG["ratio_e6"][i], i
+        assert p["covered"] is PG["covered"][i], i
+        assert str(p["amount"]) == PG["premium"][i], i

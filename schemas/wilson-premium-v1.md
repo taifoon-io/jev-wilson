@@ -60,3 +60,12 @@ Cheat is a separate flag. A Jev `cheat_shaped` answer at or above 0.5 (THRESHOLD
 | `{min, max}` | a range for π | `max` is the 0.30 cover rule; `min` is an optional floor |
 
 Effect of z on the 9/10 row at P = 100,000,000 (100 USDC): the layer gives π = 40,415,000; z = 1.96 gives 40,415,600.
+
+## Solidity
+
+`solidity/src/WilsonPremium.sol` computes the same curve in integers, multiplied through by n:
+`u_F = (x + z²/2 + z·sqrt(x(n − x)/n + z²/4)) / (n + z²)` with x = n − k, at scale 1e30 with z = 1959963984540054·10⁻¹⁵
+and z² exact. Then `ratioE6 = round(u_F·10⁶)` (ties up), `π = floor(P·ratioE6/10⁶)`, `cover = u_F ≤ 0.30` compared exactly.
+`k = 0` reverts `WilsonUnknown()` (`quote` returns insurable = false). On every row of `tests/vectors/premium-grid.json`
+it equals the TypeScript: π, ratioE6 and cover, difference 0. The closest record with n ≤ 300 lies 2.6·10⁻¹¹ (relative)
+from a rounding tie, far above both the doubles' error and the fixed point's.

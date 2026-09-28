@@ -35,3 +35,17 @@ jobs:
         if: matrix.python != '3.9'
         run: pip install 'typesafe-sdk>=0.7.2'
       - run: pytest tests -q -rs
+  solidity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: foundry-rs/foundry-toolchain@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: forge test (golden grid + fuzz)
+        working-directory: solidity
+        run: forge test
+      - name: FFI parity with the TypeScript
+        working-directory: solidity
+        run: WILSON_FFI=1 forge test --ffi --match-test ffi

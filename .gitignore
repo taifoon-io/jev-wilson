@@ -9,3 +9,7 @@ python/build/
 
 # drafts: never pushed to the public repo.
 drafts/
+
+# Foundry build output
+solidity/out/
+solidity/cache/

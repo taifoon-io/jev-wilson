@@ -189,6 +189,69 @@
    }
   },
   {
+   "id": "live:0x1112889be806840a66419ea1e8d4dd21852993e5:moonbeam:2026-09-28",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/2026-09-28/0x1112889be806840a66419ea1e8d4dd21852993e5.moonbeam.json",
+   "fetched_at": "2026-09-28T08:34:01Z",
+   "seller": "0x1112889be806840a66419ea1e8d4dd21852993e5",
+   "tenant": "moonbeam",
+   "token": "GLMR",
+   "k": 88,
+   "n": 88,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": 0.0418270666648922,
+    "premium": "418270000000000000",
+    "wilson_failure": [
+     0,
+     0.0418270666648922
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0x4b33758d85678ea86cd875af8caf318462268ba8:moonbeam:2026-09-28",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/2026-09-28/0x4b33758d85678ea86cd875af8caf318462268ba8.moonbeam.json",
+   "fetched_at": "2026-09-28T08:34:01Z",
+   "seller": "0x4b33758d85678ea86cd875af8caf318462268ba8",
+   "tenant": "moonbeam",
+   "token": "GLMR",
+   "k": 2735,
+   "n": 2740,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": 0.00426485786841298,
+    "premium": "42650000000000000",
+    "wilson_failure": [
+     0.0007796970114608734,
+     0.00426485786841298
+    ],
+    "insurable": true
+   }
+  },
+  {
+   "id": "live:0xfcf0b00f8352dd193a671e40940c9a32396adb49:moonbeam:2026-09-28",
+   "source": "live POST https://coord.taifoon.dev/v1/pools/quote",
+   "fixture": "tests/fixtures/live/2026-09-28/0xfcf0b00f8352dd193a671e40940c9a32396adb49.moonbeam.json",
+   "fetched_at": "2026-09-28T08:34:01Z",
+   "seller": "0xfcf0b00f8352dd193a671e40940c9a32396adb49",
+   "tenant": "moonbeam",
+   "token": "GLMR",
+   "k": 60,
+   "n": 62,
+   "price": "10000000000000000000",
+   "layer": {
+    "premium_ratio": 0.11020469594985441,
+    "premium": "1102050000000000000",
+    "wilson_failure": [
+     0.008891371499816638,
+     0.11020469594985441
+    ],
+    "insurable": true
+   }
+  },
+  {
    "id": "plan:0/0@100000000",
    "source": "the coordination layer's quote (POST https://coord.taifoon.dev/v1/pools/quote)",
    "k": 0,
