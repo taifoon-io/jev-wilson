@@ -1,10 +1,10 @@
-# Publishes taifoon-jev-wilson to PyPI through a trusted publisher (OIDC, no token) when a v* tag is pushed.
+# Publishes taifoon-jev-wilson to PyPI through a trusted publisher (OIDC, no token) when a py-v* tag is pushed (npm releases use v*).
 # One-time, on pypi.org: add a (pending) trusted publisher for project taifoon-jev-wilson,
 # owner taifoon-io, repository jev-wilson, workflow publish-pypi.yml, environment pypi.
 name: publish-pypi
 on:
   push:
-    tags: ['v*']
+    tags: ['py-v*']
 permissions:
   contents: read
 jobs:
@@ -18,7 +18,7 @@ jobs:
       - run: pip install build pytest 'typesafe-sdk>=0.7.2'
       - run: pytest tests -q
       - name: The tag must match pyproject.toml
-        run: test "v$(python -c "import tomllib;print(tomllib.load(open('python/pyproject.toml','rb'))['project']['version'])")" = "${GITHUB_REF_NAME}"
+        run: test "py-v$(python -c "import tomllib;print(tomllib.load(open('python/pyproject.toml','rb'))['project']['version'])")" = "${GITHUB_REF_NAME}"
       - run: python -m build python --outdir dist
       - uses: actions/upload-artifact@v4
         with:

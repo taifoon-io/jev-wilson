@@ -3,7 +3,7 @@
 Price assurance from a seller's record: the Wilson score interval on delivered and failed jobs, mapped to a coverage premium for the next job. Same numbers as the npm package `@taifoon/jev-wilson`, bit for bit.
 
 ```sh
-pip install taifoon-jev-wilson
+pip install "git+https://github.com/taifoon-io/jev-wilson#subdirectory=python"   # PyPI soon
 ```
 
 ```py

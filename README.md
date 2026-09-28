@@ -8,7 +8,7 @@ Grading is a separate, optional step: `grade()` asks TypeSafe's Jev (`jev-1.13.0
 
 ```sh
 npm i @taifoon/jev-wilson        # zero runtime dependencies
-pip install taifoon-jev-wilson   # same functions, same bits
+pip install "git+https://github.com/taifoon-io/jev-wilson#subdirectory=python"   # same functions, same bits (PyPI soon)
 ```
 
 ```ts
@@ -54,7 +54,7 @@ g.answers.spec_met.probabilities;          // { yes: …, no: … }
 premium({ k: 60, n: 62 }, { price: 10n ** 19n });
 ```
 
-Python: `pip install "taifoon-jev-wilson[jev]"` adds `typesafe-sdk`, and `grade(state, client=TypeSafeClient())` works the same way. See `examples/grade-and-price.ts`.
+Python: `pip install "taifoon-jev-wilson[jev] @ git+https://github.com/taifoon-io/jev-wilson#subdirectory=python"` adds `typesafe-sdk`, and `grade(state, client=TypeSafeClient())` works the same way. See `examples/grade-and-price.ts`.
 
 The rubric is frozen in `schemas/rubric-v1.json` (hash `0x129dfc81338f238adba7566c1f9c2a72769168edd0fd8251a34a81a90ea3eb97`).
 
