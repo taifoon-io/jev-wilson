@@ -1,6 +1,6 @@
 {
   "name": "@taifoon/jev-wilson",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Price assurance from a seller's record: the Wilson score interval on delivered and failed jobs, mapped to a coverage premium. TypeScript and Python, bit for bit. Optional grading with TypeSafe's Jev through @typesafe-ai/sdk.",
   "license": "Apache-2.0",
   "author": "Taifoon <taifooon@proton.me>",
@@ -84,5 +84,9 @@
   "publishConfig": {
     "access": "public",
     "provenance": true
+  },
+  "dependencies": {
+    "@taifoon/jev": "^0.2.13",
+    "@taifoon/n8n-nodes-typesafe": "^2.0.4"
   }
 }

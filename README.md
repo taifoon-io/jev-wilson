@@ -7,7 +7,7 @@ Grading is a separate, optional step: `grade()` asks TypeSafe's Jev (`jev-1.13.0
 ## Quick start
 
 ```sh
-npm i @taifoon/jev-wilson        # zero runtime dependencies
+npm i @taifoon/jev-wilson        # also installs @taifoon/jev and @taifoon/n8n-nodes-typesafe
 pip install "git+https://github.com/taifoon-io/jev-wilson#subdirectory=python"   # same functions, same bits (PyPI soon)
 ```
 
