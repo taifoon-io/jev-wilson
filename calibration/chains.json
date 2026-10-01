@@ -1,0 +1,105 @@
+{
+ "_": "The chains a calibration runs on: static facts only (fee model, read-only price and L1-fee inputs, fallback RPCs). Addresses equal the address registry (a gate checks it). Everything measured lives in <chainId>.json.",
+ "chains": {
+  "8453": {
+   "name": "Base",
+   "fee_model": "op-stack",
+   "gas_token": "ETH",
+   "gas_token_vol_per_hour": 0.012,
+   "price": {
+    "kind": "chainlink",
+    "chain": 8453,
+    "feed": "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70",
+    "pair": "ETH / USD"
+   },
+   "l1": {
+    "kind": "op-gas-price-oracle",
+    "address": "0x420000000000000000000000000000000000000F"
+   },
+   "tip": "percentile",
+   "rpcs": [
+    "https://mainnet.base.org",
+    "https://base-rpc.publicnode.com",
+    "https://base.gateway.tenderly.co"
+   ],
+   "policy": {}
+  },
+  "42161": {
+   "name": "Arbitrum One",
+   "fee_model": "arbitrum",
+   "gas_token": "ETH",
+   "gas_token_vol_per_hour": 0.012,
+   "price": {
+    "kind": "chainlink",
+    "chain": 8453,
+    "feed": "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70",
+    "pair": "ETH / USD",
+    "why": "ETH is the same asset on every chain: one feed, read on Base (as razor does)"
+   },
+   "l1": {
+    "kind": "arb-gas-info",
+    "address": "0x000000000000000000000000000000000000006C"
+   },
+   "tip": "none",
+   "rpcs": [
+    "https://arb1.arbitrum.io/rpc",
+    "https://arbitrum.gateway.tenderly.co",
+    "https://arbitrum.drpc.org"
+   ],
+   "policy": {}
+  },
+  "5042": {
+   "name": "Arc",
+   "fee_model": "none",
+   "gas_token": "USDC",
+   "gas_token_vol_per_hour": 0,
+   "price": {
+    "kind": "fixed",
+    "usd8": "100000000",
+    "why": "the gas token is USDC, the job token: no conversion, no price feed"
+   },
+   "l1": {
+    "kind": "none"
+   },
+   "tip": "percentile",
+   "rpcs": [
+    "https://rpc.mainnet.arc.io",
+    "https://arc.drpc.org"
+   ],
+   "policy": {
+    "ethMoveBps": 0,
+    "tipPercentile": 90
+   },
+   "policy_why": {
+    "ethMoveBps": "the gas token is the job token (USDC): no price can move between the quote and our legs",
+    "tipPercentile": "a zero tip sat unmined on Arc (2026-09-17) and the 75th-percentile tip is near zero; the 90th is what paying transactions use"
+   }
+  },
+  "4663": {
+   "name": "Robinhood Chain",
+   "fee_model": "arbitrum",
+   "gas_token": "ETH",
+   "gas_token_vol_per_hour": 0.012,
+   "price": {
+    "kind": "chainlink",
+    "chain": 8453,
+    "feed": "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70",
+    "pair": "ETH / USD",
+    "why": "ETH is the same asset on every chain: one feed, read on Base (as razor does)"
+   },
+   "l1": {
+    "kind": "arb-gas-info",
+    "address": "0x000000000000000000000000000000000000006C"
+   },
+   "tip": "none",
+   "rpcs": [
+    "https://rpc.mainnet.chain.robinhood.com",
+    "https://robinhood-rpc.publicnode.com"
+   ],
+   "policy": {}
+  }
+ },
+ "rotation": "https://warmbed.taifoon.dev/warmbed/chain/{chain}/rotation?need=call&n=8",
+ "razor": "https://warmbed.taifoon.dev/razor/v1/gas/{chain}",
+ "sellers": "https://coord.taifoon.dev/v1/pools?chain={chain}&limit=200&offset={offset}"
+}

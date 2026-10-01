@@ -1,0 +1,405 @@
+{
+"_": "seller records (correct, incorrect under the seller-verdict rule) of every Base seller in GET https://coord.taifoon.dev/v1/pools?chain=8453 on 2026-10-01; counts only",
+"records": [
+{
+"correct": 2735,
+"incorrect": 5
+},
+{
+"correct": 162,
+"incorrect": 30
+},
+{
+"correct": 107,
+"incorrect": 8
+},
+{
+"correct": 99,
+"incorrect": 0
+},
+{
+"correct": 70,
+"incorrect": 2
+},
+{
+"correct": 34,
+"incorrect": 15
+},
+{
+"correct": 31,
+"incorrect": 2
+},
+{
+"correct": 26,
+"incorrect": 4
+},
+{
+"correct": 24,
+"incorrect": 0
+},
+{
+"correct": 24,
+"incorrect": 1
+},
+{
+"correct": 23,
+"incorrect": 0
+},
+{
+"correct": 22,
+"incorrect": 0
+},
+{
+"correct": 21,
+"incorrect": 0
+},
+{
+"correct": 21,
+"incorrect": 0
+},
+{
+"correct": 18,
+"incorrect": 0
+},
+{
+"correct": 18,
+"incorrect": 1
+},
+{
+"correct": 18,
+"incorrect": 1
+},
+{
+"correct": 18,
+"incorrect": 0
+},
+{
+"correct": 16,
+"incorrect": 0
+},
+{
+"correct": 14,
+"incorrect": 0
+},
+{
+"correct": 12,
+"incorrect": 46
+},
+{
+"correct": 12,
+"incorrect": 0
+},
+{
+"correct": 12,
+"incorrect": 0
+},
+{
+"correct": 11,
+"incorrect": 3
+},
+{
+"correct": 11,
+"incorrect": 0
+},
+{
+"correct": 10,
+"incorrect": 23
+},
+{
+"correct": 10,
+"incorrect": 0
+},
+{
+"correct": 10,
+"incorrect": 3
+},
+{
+"correct": 10,
+"incorrect": 0
+},
+{
+"correct": 10,
+"incorrect": 0
+},
+{
+"correct": 10,
+"incorrect": 0
+},
+{
+"correct": 10,
+"incorrect": 2
+},
+{
+"correct": 10,
+"incorrect": 0
+},
+{
+"correct": 10,
+"incorrect": 2
+},
+{
+"correct": 10,
+"incorrect": 0
+},
+{
+"correct": 10,
+"incorrect": 0
+},
+{
+"correct": 9,
+"incorrect": 2
+},
+{
+"correct": 9,
+"incorrect": 4
+},
+{
+"correct": 9,
+"incorrect": 0
+},
+{
+"correct": 9,
+"incorrect": 0
+},
+{
+"correct": 9,
+"incorrect": 0
+},
+{
+"correct": 8,
+"incorrect": 17
+},
+{
+"correct": 8,
+"incorrect": 0
+},
+{
+"correct": 7,
+"incorrect": 1
+},
+{
+"correct": 6,
+"incorrect": 0
+},
+{
+"correct": 6,
+"incorrect": 0
+},
+{
+"correct": 6,
+"incorrect": 0
+},
+{
+"correct": 6,
+"incorrect": 0
+},
+{
+"correct": 6,
+"incorrect": 3
+},
+{
+"correct": 5,
+"incorrect": 0
+},
+{
+"correct": 5,
+"incorrect": 0
+},
+{
+"correct": 5,
+"incorrect": 3
+},
+{
+"correct": 5,
+"incorrect": 0
+},
+{
+"correct": 4,
+"incorrect": 0
+},
+{
+"correct": 4,
+"incorrect": 0
+},
+{
+"correct": 4,
+"incorrect": 5
+},
+{
+"correct": 3,
+"incorrect": 0
+},
+{
+"correct": 3,
+"incorrect": 0
+},
+{
+"correct": 3,
+"incorrect": 2
+},
+{
+"correct": 2,
+"incorrect": 0
+},
+{
+"correct": 2,
+"incorrect": 0
+},
+{
+"correct": 2,
+"incorrect": 1
+},
+{
+"correct": 2,
+"incorrect": 11
+},
+{
+"correct": 2,
+"incorrect": 3
+},
+{
+"correct": 1,
+"incorrect": 0
+},
+{
+"correct": 1,
+"incorrect": 0
+},
+{
+"correct": 1,
+"incorrect": 0
+},
+{
+"correct": 1,
+"incorrect": 0
+},
+{
+"correct": 1,
+"incorrect": 6
+},
+{
+"correct": 1,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 12
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 1
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 0
+},
+{
+"correct": 0,
+"incorrect": 1
+},
+{
+"correct": 0,
+"incorrect": 0
+}
+]
+}

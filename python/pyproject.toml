@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "taifoon-jev-wilson"
-version = "0.1.0"
+version = "0.3.0"
 description = "Price assurance from a seller's record: the Wilson score interval on delivered and failed jobs, mapped to a coverage premium. Bit for bit with the TypeScript package."
 readme = "README.md"
 license = "Apache-2.0"

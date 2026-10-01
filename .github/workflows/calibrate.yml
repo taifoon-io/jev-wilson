@@ -1,0 +1,53 @@
+# The fee and premium calibration of every chain, re-run on a schedule and published as a release (the JSON files + a summary).
+#   weekly           a fresh calibration of every chain, always published
+#   every 6 hours    `calibrate all --compare`: exit 2 when the config (gas buffer, legs, prior) would change, i.e. the gas
+#                    regime moved; only then is a new calibration published
+#   by hand          workflow_dispatch
+# Read-only on every chain: public RPCs, the razor gas service and the public seller records. Nothing is signed or sent.
+name: calibrate
+on:
+  schedule:
+    - cron: '17 6 * * 1'
+    - cron: '47 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write          # the release that carries the result
+concurrency:
+  group: calibrate
+  cancel-in-progress: false
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Has the gas regime changed? (compare only, nothing written)
+        id: cmp
+        run: |
+          set +e
+          node --experimental-strip-types --no-warnings src/cli.ts calibrate all --compare --quiet --history "$RUNNER_TEMP/history-{chain}.json"
+          rc=$?
+          set -e
+          echo "changed=$([ $rc = 2 ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          [ $rc = 0 ] || [ $rc = 2 ]
+      - name: Calibrate every chain
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 6 * * 1' || steps.cmp.outputs.changed == 'true'
+        run: |
+          mkdir -p out
+          node --experimental-strip-types --no-warnings src/cli.ts calibrate all --out out --quiet --history "$RUNNER_TEMP/history-{chain}.json" | tee out/summary.txt
+          node --experimental-strip-types --no-warnings src/cli.ts calibration check out
+      - name: Publish
+        if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 6 * * 1' || steps.cmp.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHANGED: ${{ steps.cmp.outputs.changed }}
+        run: |
+          tag="calibration-$(date -u +%Y%m%dT%H%MZ)"
+          { echo "Calibration of $(date -u +%Y-%m-%dT%H:%MZ) by \`jev-wilson calibrate all\` (@taifoon/jev-wilson $(node -p "require('./package.json').version"))."
+            if [ "$CHANGED" = true ]; then echo; echo "**The config changed against the calibration this version ships** (gas buffer, legs or prior): a gas-regime change."; fi
+            echo; echo '```'; cat out/summary.txt; echo '```'; } > out/release-body.md
+          gh release create "$tag" out/*.json --title "Calibration $(date -u +%Y-%m-%d)" --notes-file out/release-body.md --prerelease --latest=false

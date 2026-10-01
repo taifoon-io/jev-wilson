@@ -1,7 +1,7 @@
 {
   "name": "@taifoon/jev-wilson",
-  "version": "0.2.1",
-  "description": "Price assurance from a seller's record: the Wilson score interval on delivered and failed jobs, mapped to a coverage premium. TypeScript and Python, bit for bit. Optional grading with TypeSafe's Jev through @typesafe-ai/sdk.",
+  "version": "0.3.0",
+  "description": "Price agent jobs settled through an evaluator: the fee that never loses (max of bps and our gas at the quoted price), the cover premium from a seller's record (Wilson bound, or the pool holder's Beta-Binomial price), and a one-command calibration per chain. TypeScript and Python, bit for bit. Optional grading with TypeSafe's Jev.",
   "license": "Apache-2.0",
   "author": "Taifoon <taifooon@proton.me>",
   "homepage": "https://github.com/taifoon-io/jev-wilson#readme",
@@ -25,7 +25,11 @@
     "ai-agents",
     "jev",
     "typesafe",
-    "mcp"
+    "mcp",
+    "gas",
+    "fee",
+    "calibration",
+    "monte-carlo"
   ],
   "type": "module",
   "main": "./dist/wilson.js",
@@ -39,6 +43,27 @@
       "types": "./dist/mcp.d.ts",
       "default": "./dist/mcp.js"
     },
+    "./lp": {
+      "types": "./dist/lp.d.ts",
+      "default": "./dist/lp.js"
+    },
+    "./gas": {
+      "types": "./dist/gas.d.ts",
+      "default": "./dist/gas.js"
+    },
+    "./fee": {
+      "types": "./dist/fee.d.ts",
+      "default": "./dist/fee.js"
+    },
+    "./prior": {
+      "types": "./dist/prior.d.ts",
+      "default": "./dist/prior.js"
+    },
+    "./calibration": {
+      "types": "./dist/calibration.d.ts",
+      "default": "./dist/calibration.js"
+    },
+    "./calibration/*": "./calibration/*",
     "./schemas/*": "./schemas/*",
     "./package.json": "./package.json"
   },
@@ -48,6 +73,7 @@
   "files": [
     "dist",
     "schemas",
+    "calibration",
     "solidity/src",
     "examples",
     "README.md",
@@ -66,7 +92,10 @@
     "test:ffi": "cd solidity && WILSON_FFI=1 forge test --ffi",
     "vectors": "node --experimental-strip-types --no-warnings scripts/gen-premium-grid.ts",
     "check": "npm run build && tsc -p tsconfig.test.json && npm test",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "vectors:fee": "node --experimental-strip-types --no-warnings scripts/gen-fee-grid.ts",
+    "calibrate": "node --experimental-strip-types --no-warnings src/cli.ts calibrate",
+    "calibration:check": "node --experimental-strip-types --no-warnings src/cli.ts calibration check"
   },
   "peerDependencies": {
     "@typesafe-ai/sdk": "^0.6.0"

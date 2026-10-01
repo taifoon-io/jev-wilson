@@ -1,0 +1,434 @@
+{
+ "schema": "taifoon.jev-wilson.calibration.v1",
+ "chainId": 8453,
+ "name": "Base",
+ "version": 1,
+ "status": "measured",
+ "generated_at": "2026-10-01T08:54:20.768Z",
+ "library": "@taifoon/jev-wilson@0.3.0",
+ "fee": {
+  "bps": 49,
+  "marginUsdc": 0.002,
+  "ethMoveBps": 300,
+  "quoteTtlS": 300,
+  "settleHorizonS": 3600,
+  "tipPercentile": 75,
+  "maxPriceAgeS": 3600,
+  "capBps": 1000,
+  "gasBufferBps": 1700
+ },
+ "legs": {
+  "status": "measured",
+  "source": "Base mainnet fork at block 52,025,939: the stand-in hire rehearsed with the line's own contracts and Base USDC (simulated; nothing sent on Base). Plan digest 0xa7a656d7d2b738f62f69ff04042137c29c005761c7a59c6a5c0f17771a58fe9b",
+  "measured_at": "2026-10-01",
+  "legs": [
+   {
+    "key": "relay-approve",
+    "leg": "approve escrow (USDC)",
+    "who": "relayer",
+    "gas": 55437,
+    "bytes": 188,
+    "profiles": [
+     "relayed"
+    ],
+    "tx": null
+   },
+   {
+    "key": "relay-open",
+    "leg": "openJobWithSpec",
+    "who": "relayer",
+    "gas": 396703,
+    "bytes": 732,
+    "profiles": [
+     "relayed"
+    ],
+    "tx": null
+   },
+   {
+    "key": "approve",
+    "leg": "approve deposit (USDC)",
+    "who": "stand-in",
+    "gas": 55437,
+    "bytes": 188,
+    "profiles": [
+     "stand-in",
+     "relayed"
+    ],
+    "tx": null
+   },
+   {
+    "key": "accept",
+    "leg": "accept (deposit pulled, pool encumbers)",
+    "who": "stand-in",
+    "gas": 172962,
+    "bytes": 156,
+    "profiles": [
+     "stand-in",
+     "relayed"
+    ],
+    "tx": null
+   },
+   {
+    "key": "submit",
+    "leg": "submitWithDelivery",
+    "who": "stand-in",
+    "gas": 49696,
+    "bytes": 316,
+    "profiles": [
+     "stand-in",
+     "relayed"
+    ],
+    "tx": null
+   },
+   {
+    "key": "verdict",
+    "leg": "postVerdict (JudgeAdapter → hook complete, fee forwarded)",
+    "who": "evaluator",
+    "gas": 259001,
+    "bytes": 252,
+    "profiles": [
+     "direct",
+     "stand-in",
+     "relayed"
+    ],
+    "tx": null
+   },
+   {
+    "key": "forward",
+    "leg": "forward the price to the doer (USDC transfer)",
+    "who": "stand-in",
+    "gas": 62159,
+    "bytes": 188,
+    "profiles": [
+     "stand-in",
+     "relayed"
+    ],
+    "tx": null
+   }
+  ]
+ },
+ "lp": {
+  "a0": 0.1666,
+  "b0": 0.9297,
+  "lambda": 2,
+  "severity": 1,
+  "lpYield": 0.1,
+  "utilization": 0.25,
+  "opsUnits": 100,
+  "maxRatio": 0.3
+ },
+ "premium": {
+  "lockSeconds": 4200,
+  "arbitrator": false,
+  "coverMultipleBps": 10000
+ },
+ "chain": {
+  "fee_model": "op-stack",
+  "gas_token": "ETH",
+  "tip": "percentile",
+  "block_s": 2,
+  "price": {
+   "kind": "chainlink",
+   "chain": 8453,
+   "feed": "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70",
+   "pair": "ETH / USD"
+  },
+  "l1": {
+   "kind": "op-gas-price-oracle",
+   "address": "0x420000000000000000000000000000000000000F"
+  }
+ },
+ "history": {
+  "source": "a saved history (hist7-8453.json)",
+  "razor": "answered every call",
+  "segments": [
+   [
+    51725225,
+    52027624
+   ]
+  ],
+  "blocks": 302400,
+  "days": 7,
+  "horizon_s": 3900,
+  "horizon_blocks": 1950,
+  "sampled_every_blocks": 1,
+  "horizon_rows": 1950,
+  "rise_bps": {
+   "p50": 107,
+   "p90": 667,
+   "p95": 1678,
+   "p99": 13661,
+   "max": 62402
+  },
+  "base_fee_wei": {
+   "min": "5000000",
+   "p50": "5000000",
+   "p95": "5000000",
+   "max": "53992930"
+  },
+  "tip_wei": {
+   "percentile": 75,
+   "p50": "2000000",
+   "p95": "8617360"
+  },
+  "buffer_bps_history": 1700,
+  "buffer_bps_montecarlo": 1700,
+  "note": "buffer = the p95 rise of the base fee over 1,950 blocks, rounded up to 100 bps, raised until the Monte Carlo finds no loss"
+ },
+ "prior": {
+  "a0": 0.1666,
+  "b0": 0.9297,
+  "fit_a0": 0.16655269544274684,
+  "fit_b0": 0.9296609683726286,
+  "mean": 0.1519345187352068,
+  "sellers": 73,
+  "jobs": 4702,
+  "incorrect": 220,
+  "over30": 0.2191780821917808,
+  "source": "https://coord.taifoon.dev/v1/pools?chain=8453&limit=200"
+ },
+ "gas_snapshot": {
+  "source": "razor",
+  "block": 52027751,
+  "at": 1790844850,
+  "base_fee_wei": "5000000",
+  "tip_wei": "2500000",
+  "live_buffer_bps": 5,
+  "l1_fee_wei_by_bytes": {
+   "156": "1648183210",
+   "188": "1935823141",
+   "252": "2493670279",
+   "316": "3051517417",
+   "732": "6694956538"
+  },
+  "gas_usd8": "268287630000",
+  "gas_usd_updated_at": 1790844121
+ },
+ "checks": {
+  "no_loss": {
+   "pass": true,
+   "criterion": "policy B: every leg capped at the quoted gas price (maxFeePerGas), as the executor sends them; A = sent at once, reported only",
+   "samples": 20000,
+   "seed": 7,
+   "buffer_search": [
+    {
+     "buffer_bps": 1700,
+     "losses": 0,
+     "send_at_once_losses": 9
+    }
+   ],
+   "profiles": [
+    {
+     "profile": "direct",
+     "samples": 20000,
+     "served_share": 0.4696,
+     "mean_fee_usdc": 0.04917184625213033,
+     "A": {
+      "losses": 3,
+      "loss_share": 0.00031942078364565585,
+      "mean_margin_usdc": 0.044163649268066575,
+      "worst_margin_usdc": -0.013015622872499343
+     },
+     "B": {
+      "losses": 0,
+      "loss_share": 0,
+      "mean_margin_usdc": 0.04416702544360725,
+      "wait_p95_s": 0,
+      "wait_max_s": 5272
+     }
+    },
+    {
+     "profile": "stand-in",
+     "samples": 20000,
+     "served_share": 0.3705,
+     "mean_fee_usdc": 0.06385155910931194,
+     "A": {
+      "losses": 3,
+      "loss_share": 0.0004048582995951417,
+      "mean_margin_usdc": 0.0522124472908027,
+      "worst_margin_usdc": -0.018730466046685233
+     },
+     "B": {
+      "losses": 0,
+      "loss_share": 0,
+      "mean_margin_usdc": 0.052219527632266845,
+      "wait_p95_s": 0,
+      "wait_max_s": 5272
+     }
+    },
+    {
+     "profile": "relayed",
+     "samples": 20000,
+     "served_share": 0.3389,
+     "mean_fee_usdc": 0.07350829831808742,
+     "A": {
+      "losses": 3,
+      "loss_share": 0.00044260843906757157,
+      "mean_margin_usdc": 0.05310199242602935,
+      "worst_margin_usdc": -0.01720976473261624
+     },
+     "B": {
+      "losses": 0,
+      "loss_share": 0,
+      "mean_margin_usdc": 0.05310931009792869,
+      "wait_p95_s": 0,
+      "wait_max_s": 5272
+     }
+    }
+   ]
+  },
+  "backer": {
+   "sims": 1000,
+   "jobs": 1000,
+   "capital_usdc": 500,
+   "rows": [
+    {
+     "arbitrator": false,
+     "seller": "new (no record)",
+     "mean_return": 0.0003299561619999989,
+     "p5_return": 0.00031019599999999864,
+     "loss_share": 0,
+     "mean_ratio": 0.0026309073189278516,
+     "uninsured_share": 0.06005399999999998,
+     "utilization": 0.000038300744033116296,
+     "premiums_usdc": 0.16497808099999933,
+     "payouts_usdc": 0
+    },
+    {
+     "arbitrator": false,
+     "seller": "30 correct / 1 incorrect",
+     "mean_return": 0.0003302834359999985,
+     "p5_return": 0.00031077399999999956,
+     "loss_share": 0,
+     "mean_ratio": 0.0026296247259034768,
+     "uninsured_share": 0.0603669999999999,
+     "utilization": 0.00003890195100955558,
+     "premiums_usdc": 0.16514171799999944,
+     "payouts_usdc": 0
+    },
+    {
+     "arbitrator": false,
+     "seller": "70 correct / 2 incorrect",
+     "mean_return": 0.0003293179279999988,
+     "p5_return": 0.00030927199999999965,
+     "loss_share": 0,
+     "mean_ratio": 0.002625966396604866,
+     "uninsured_share": 0.06005399999999998,
+     "utilization": 0.000038325240307591293,
+     "premiums_usdc": 0.16465896399999969,
+     "payouts_usdc": 0
+    },
+    {
+     "arbitrator": false,
+     "seller": "2,735 correct / 5 incorrect",
+     "mean_return": 0.0003294051439999991,
+     "p5_return": 0.000310358,
+     "loss_share": 0,
+     "mean_ratio": 0.0026247378480086323,
+     "uninsured_share": 0.060004999999999975,
+     "utilization": 0.00003853816260471882,
+     "premiums_usdc": 0.16470257199999946,
+     "payouts_usdc": 0
+    },
+    {
+     "arbitrator": false,
+     "seller": "20 new sellers, one backer",
+     "mean_return": 0.0003293169589999989,
+     "p5_return": 0.00032594279999999894,
+     "loss_share": 0
+    },
+    {
+     "arbitrator": true,
+     "seller": "new (no record)",
+     "mean_return": 0.0320410629015399,
+     "p5_return": -0.003373783376378636,
+     "loss_share": 0.091,
+     "mean_ratio": 0.07047986556553164,
+     "uninsured_share": 0.2807760000000001,
+     "utilization": 0.000029665130808652072,
+     "premiums_usdc": 50.257912257,
+     "payouts_usdc": 34.23738080623007
+    },
+    {
+     "arbitrator": true,
+     "seller": "30 correct / 1 incorrect",
+     "mean_return": 0.04895552735752221,
+     "p5_return": -0.027512523906951712,
+     "loss_share": 0.104,
+     "mean_ratio": 0.05670311923937491,
+     "uninsured_share": 0.059969999999999885,
+     "utilization": 0.0000389811938088389,
+     "premiums_usdc": 71.85456688999997,
+     "payouts_usdc": 47.37680321123888
+    },
+    {
+     "arbitrator": true,
+     "seller": "70 correct / 2 incorrect",
+     "mean_return": 0.041395598456978426,
+     "p5_return": -0.030461564007933588,
+     "loss_share": 0.134,
+     "mean_ratio": 0.04820709253556551,
+     "uninsured_share": 0.06006999999999994,
+     "utilization": 0.00003844305174225582,
+     "premiums_usdc": 60.34575009900005,
+     "payouts_usdc": 39.64795087051086
+    },
+    {
+     "arbitrator": true,
+     "seller": "2,735 correct / 5 incorrect",
+     "mean_return": 0.004531486933033256,
+     "p5_return": -0.01882819502049466,
+     "loss_share": 0.15,
+     "mean_ratio": 0.0060444331997419635,
+     "uninsured_share": 0.06037999999999996,
+     "utilization": 0.000038356934987440556,
+     "premiums_usdc": 4.685239451000004,
+     "payouts_usdc": 2.4194959844833743
+    },
+    {
+     "arbitrator": true,
+     "seller": "20 new sellers, one backer",
+     "mean_return": 0.0298062248291817,
+     "p5_return": 0.013613823608801527,
+     "loss_share": 0
+    }
+   ]
+  }
+ },
+ "table": {
+  "profile": "stand-in",
+  "rows": [
+   {
+    "price": "1000000",
+    "fee": "15864",
+    "premium": "154",
+    "total": "1016018",
+    "served": true,
+    "floored": true
+   },
+   {
+    "price": "10000000",
+    "fee": "49000",
+    "premium": "633",
+    "total": "10049633",
+    "served": true,
+    "floored": false
+   },
+   {
+    "price": "100000000",
+    "fee": "490000",
+    "premium": "5428",
+    "total": "100495428",
+    "served": true,
+    "floored": false
+   }
+  ],
+  "min_price": {
+   "direct": "79850",
+   "stand-in": "158640",
+   "relayed": "263240"
+  }
+ },
+ "config_digest": "0xd894233d1780e7a27979991b043c95503944c37fb72ae1f9e35bf3665521b0c9",
+ "digest": "0xe88cb8d6af8250bfc641cbcf48c3d8cd08c399e375f6b9f5e0a2bf57bb29ee4c"
+}

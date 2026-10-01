@@ -80,7 +80,47 @@ same file is checked by the TypeScript and Python tests, so the three languages 
 npm test              # TypeScript, Python, then forge test (each skipped with a note if its tool is missing)
 npm run test:ffi      # also fuzzes the Solidity against the TypeScript through vm.ffi
 npm run vectors       # regenerates tests/vectors/premium-grid.json from src/wilson.ts
+npm run vectors:fee   # regenerates tests/vectors/fee-grid.json and prior-fit.json from src/fee.ts and src/prior.ts
 ```
+
+## The fee, the pool holder's premium, and one calibration per chain
+
+Three more modules price a job that settles through an ERC-8183 evaluator. All three are integer or plain float maths, and
+TypeScript and Python agree on shared vector files (`tests/vectors/fee-grid.json`, `lp-grid.json`, `prior-fit.json`).
+
+- `@taifoon/jev-wilson/fee`: `jobFee(price, gas, legs, policy)`. The fee is the larger of `bps` of the price and the
+  evaluator's own gas at the quoted gas price (base fee plus a buffer, plus the tip, plus the L1 data fee) converted to the
+  job token, plus a margin. A job whose fee would exceed the hook's cap is refused, and the answer names the smallest price
+  that is served. Python: `taifoon_jev_wilson.fee.job_fee`.
+- `@taifoon/jev-wilson/lp`: `lpPremium()`, the premium a cover pool's backers need: expected loss and a risk loading from a
+  Beta-Binomial posterior on the seller's record (both 0 when no arbitrator can find cheating), plus the capital the cover
+  locks and the backers' gas.
+- `@taifoon/jev-wilson/prior`: `fitPrior(records)`, the Beta prior fitted by maximum likelihood to every seller's record.
+
+The numbers these modules take are measured, per chain, by one command:
+
+```
+npx @taifoon/jev-wilson calibrate base --out ./calibration
+```
+
+It reads only public data and signs nothing:
+
+1. the chain's fee history over 7 days (the razor gas service, else `eth_feeHistory`, else block headers): the p95 rise of
+   the base fee over the quote's validity plus the settle horizon, rounded up, is the gas buffer;
+2. the gas of each of our legs on a job, from receipts (`calibration/legs/<chainId>.json`; a chain with no receipts of its
+   own yet borrows Base's, marked `provisional`, with 25 % added);
+3. the market prior, fitted to the chain's seller records (Base's when the chain has none yet);
+4. a Monte Carlo of the fee over that history: each job is quoted at a random block and its legs pay the gas of the blocks
+   where they would be sent, capped at the quoted gas price; the buffer rises until no served job loses money;
+5. a Monte Carlo of a backer's year under `lpPremium`;
+6. the price table, from a live read of today's gas.
+
+The result is `calibration/<chainId>.json`, versioned: `version` moves when the fee, the legs or the premium parameters
+change, `digest` covers the whole file and `config_digest` what a fee config reads. `jev-wilson calibration check` recomputes
+every file's table and digests offline; `jev-wilson calibration show base` prints the table. `--compare` writes nothing and
+exits 2 on a gas-regime change. Chains: `base`, `arbitrum`, `arc`, `robinhood`. The package ships the calibration it was
+released with, and `.github/workflows/calibrate.yml` re-runs it weekly (and every 6 hours checks for a regime change),
+publishing each result as a release of this repository.
 
 ## MCP
 
@@ -92,7 +132,8 @@ A stdio MCP server with three tools: `wilson_lower`, `premium`, `listing`. No ne
 
 ## Files
 
-- `src/wilson.ts`, `python/taifoon_jev_wilson/`: the functions
+- `src/wilson.ts`, `src/lp.ts`, `src/fee.ts`, `src/prior.ts`, `python/taifoon_jev_wilson/`: the functions
+- `src/calibrate.ts`, `src/montecarlo.ts`, `src/gas-source.ts`: the calibration command; `calibration/`: its inputs (`chains.json`, `policy.json`, `legs/`) and one result per chain
 - `schemas/`: `rubric-v1.json`, `wilson-premium-v1.md`, `listing.schema.json`
 - `examples/job-accept.json`: one real job on Base, and the premium for its seller's next job
 - `examples/grade-and-price.ts`: `@typesafe-ai/sdk` grades, this package prices

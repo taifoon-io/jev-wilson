@@ -1,0 +1,86 @@
+{
+ "_": "The owner's pricing decisions (A: never lose money, the fee is max(bps, our gas + buffer + margin); B: the premium is priced from the pool holder's side, capital + ops while no arbitrator exists). Policy, not measurement: a calibration copies these into its fee block, and a chain may override one (chains.json policy).",
+ "decided": "2026-10-01",
+ "fee": {
+  "bps": 49,
+  "marginUsdc": 0.002,
+  "ethMoveBps": 300,
+  "quoteTtlS": 300,
+  "settleHorizonS": 3600,
+  "tipPercentile": 75,
+  "maxPriceAgeS": 3600,
+  "capBps": 1000
+ },
+ "buffer": {
+  "quantile": 0.95,
+  "roundUpBps": 100,
+  "regimeBps": 500,
+  "regimeWhy": "the scheduled check calls it a gas-regime change when the buffer moves by 500 bps or more, a leg's gas changes, or the prior moves (2 dp); smaller moves wait for the weekly run"
+ },
+ "premium": {
+  "lockSeconds": 4200,
+  "arbitrator": false,
+  "coverMultipleBps": 10000
+ },
+ "table": {
+  "prices": [
+   1,
+   10,
+   100
+  ],
+  "profile": "stand-in"
+ },
+ "history": {
+  "days": 7,
+  "maxCalls": 600,
+  "maxHeaders": 24000,
+  "why": "7 days: the p95 rise over 2 days swung from 1,874 to 8,921 bps within hours on Base (2026-10-01) because about 5 % of 65-minute windows hold a short spike; over 7 days it reads 1,678"
+ },
+ "montecarlo": {
+  "samples": 20000,
+  "seed": 7,
+  "sizeMix": [
+   [
+    0.6,
+    0.01,
+    0.1
+   ],
+   [
+    0.3,
+    0.1,
+    10
+   ],
+   [
+    0.1,
+    10,
+    100
+   ]
+  ],
+  "acceptAfterS": 30,
+  "endMix": [
+   [
+    0.9,
+    0
+   ],
+   [
+    0.09,
+    3600
+   ],
+   [
+    0.01,
+    7200
+   ]
+  ],
+  "promptMedianS": 40
+ },
+ "backer": {
+  "sims": 1000,
+  "jobs": 1000,
+  "capital": 500,
+  "maxCoverShare": 0.05,
+  "seed": 7,
+  "book": 20
+ },
+ "provisionalLegsBufferBps": 2500,
+ "provisionalLegsBufferWhy": "a chain whose legs have no receipt of its own yet borrows another chain's (provisional): +25 % on that gas until its own rehearsal is re-read"
+}
