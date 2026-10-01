@@ -38,6 +38,10 @@ test('prior fit: the recorded answer, and Beta(a0, b0) reproduces the sellers it
   const V = JSON.parse(readFileSync(new URL('./vectors/prior-fit.json', import.meta.url), 'utf8'));
   const F = JSON.parse(readFileSync(new URL('./fixtures/sellers-8453.json', import.meta.url), 'utf8'));
   const fit = fitPrior(F.records);
-  assert.deepEqual(fit, V.fit);
+  // Math.log/exp differ by an ulp between platforms (macOS vs Linux libm), and Nelder-Mead carries that into the 9th digit:
+  // the counts are exact, the fitted floats agree to 1e-6 and to the 4 decimals lpPremium is given
+  for (const k of ['sellers', 'jobs', 'incorrect', 'pooledRate', 'over30'] as const) assert.equal(fit[k], V.fit[k]);
+  for (const k of ['a0', 'b0', 'mean', 'nll'] as const) assert.ok(Math.abs(fit[k] - V.fit[k]) <= 1e-6 * Math.max(1, Math.abs(V.fit[k])), `${k}: ${fit[k]} vs ${V.fit[k]}`);
+  assert.equal(Math.round(fit.a0 * 1e4), Math.round(V.fit.a0 * 1e4)); assert.equal(Math.round(fit.b0 * 1e4), Math.round(V.fit.b0 * 1e4));
   assert.ok(fit.mean > fit.pooledRate, 'the per-seller mean sits above the pooled rate: a few sellers fail often');
 });
