@@ -86,3 +86,19 @@ def rise_quantiles_bps(base_fees, w, qs):
 
 def window_rise_bps(base_fees, w):
     return rise_quantiles_bps(base_fees, w, [0.95])[0]
+
+
+def x402_fee(price, policy, our_gas_units=0, decimals=6):
+    """The fee on a hire paid to the seller by x402 with no settle line on the chain (the twin of x402Fee in src/fee.ts).
+
+    exact = EIP-3009 transferWithAuthorization, sent and paid for by the seller's facilitator: our gas is 0.
+    fee = max(floor(P * bps / 10,000), our gas + margin); share_bps = fee / P in bps (floored).
+    """
+    if price <= 0:
+        raise ValueError("price must be positive")
+    if our_gas_units < 0:
+        raise ValueError("our gas cannot be negative")
+    floor = our_gas_units + token_units(policy["marginUsdc"], decimals)
+    by_bps = (price * policy["bps"]) // 10_000
+    fee = by_bps if by_bps >= floor else floor
+    return {"fee": fee, "byBps": by_bps, "floor": floor, "floored": floor > by_bps, "shareBps": (fee * 10_000) // price, "ourGas": our_gas_units}

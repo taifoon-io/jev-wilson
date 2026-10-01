@@ -1,6 +1,6 @@
 {
   "name": "@taifoon/jev-wilson",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Price agent jobs settled through an evaluator: the fee that never loses (max of bps and our gas at the quoted price), the cover premium from a seller's record (Wilson bound, or the pool holder's Beta-Binomial price), and a one-command calibration per chain. TypeScript and Python, bit for bit. Optional grading with TypeSafe's Jev.",
   "license": "Apache-2.0",
   "author": "Taifoon <taifooon@proton.me>",

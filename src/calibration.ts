@@ -5,11 +5,11 @@
 import { createHash } from 'node:crypto';
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-import { FEE_PROFILES, jobFee, type FeePolicy, type FeeProfile, type GasInputs, type Leg } from './fee.ts';
+import { FEE_PROFILES, gasFloor, jobFee, x402Fee, type FeePolicy, type FeeProfile, type GasInputs, type Leg } from './fee.ts';
 import { lpPremium, LP_DEFAULTS, type LpParams } from './lp.ts';
 
 export const CALIBRATION_SCHEMA = 'taifoon.jev-wilson.calibration.v1';
-export const CHAIN_ALIASES: Record<string, number> = { base: 8453, arbitrum: 42161, arb: 42161, arc: 5042, robinhood: 4663 };
+export const CHAIN_ALIASES: Record<string, number> = { base: 8453, arbitrum: 42161, arb: 42161, arc: 5042, robinhood: 4663, monad: 143 };
 
 export type CalLeg = Leg & { key: string; profiles: FeeProfile[]; tx: string | null };
 export type Calibration = {
@@ -29,8 +29,19 @@ export type Calibration = {
   gas_snapshot: { source: string; block: number; at: number; base_fee_wei: string; tip_wei: string; live_buffer_bps: number; l1_fee_wei_by_bytes: Record<string, string>; gas_usd8: string; gas_usd_updated_at: number | null };
   checks: { no_loss: Record<string, unknown> & { pass: boolean }; backer: Record<string, unknown> };
   table: { profile: FeeProfile; rows: TableRow[]; min_price: Record<FeeProfile, string> };
+  /** the x402 buyer leg, on a chain whose sellers take x402 (chains.json `x402`): what a hire paid to the seller costs us */
+  x402?: X402Block;
   config_digest: string;
   digest: string;
+};
+export type X402Row = { price: string; fee: string; by_bps: string; floored: boolean; share_bps: number; premium_indicative: string; buyer_pays: string };
+export type X402Block = {
+  network: string; asset: string; scheme: 'exact';
+  /** what our side sends on chain for an exact payment: nothing (the seller's facilitator sends the EIP-3009 transfer) */ our_gas_units: '0';
+  settle_line: boolean; cover: boolean; note: string;
+  /** upto instead of exact: one Permit2 approval of the asset by the payer, priced at the snapshot (provisional approve leg) */
+  upto_setup: { leg: string; gas: number; bytes: number; cost_units: string; once: 'per payer and network' };
+  rows: X402Row[];
 };
 export type TableRow = { price: string; fee: string | null; premium: string; total: string | null; served: boolean; floored: boolean };
 
@@ -82,6 +93,25 @@ export function priceTable(c: Pick<Calibration, 'chainId' | 'fee' | 'legs' | 'lp
   return { profile, rows, min_price };
 }
 
+/** The x402 buyer-leg table: our fee (max(bps, 0 gas + margin)), the premium a cover pool would charge if one existed
+ *  (indicative: no settle line, no pool), and what the buyer pays (price + fee; no cover). Pure. */
+export function x402Table(c: Pick<Calibration, 'chainId' | 'fee' | 'legs' | 'lp' | 'premium' | 'gas_snapshot'>, prices: readonly number[], meta: { network: string; asset: string }): X402Block {
+  const approve = c.legs.legs.find((l) => l.key === 'approve');
+  if (!approve) throw new Error('x402Table: the legs hold no approve leg (the upto setup is priced from it)');
+  const setup = gasFloor(snapshotInputs(c), [{ leg: approve.leg, who: approve.who, gas: approve.gas, bytes: approve.bytes }], c.fee);
+  return {
+    network: meta.network, asset: meta.asset, scheme: 'exact', our_gas_units: '0', settle_line: false, cover: false,
+    note: 'exact = EIP-3009 transferWithAuthorization: the seller\'s facilitator sends it and pays its gas, so our gas is 0. No settle line on this chain: the fee is our routing and grade fee (no evaluator fee, no hook cap), and no cover pool exists, so the premium is indicative only and the buyer pays price + fee',
+    upto_setup: { leg: 'Permit2 approval of USDC (approve leg, provisional)', gas: approve.gas, bytes: approve.bytes, cost_units: setup.usdc.toString(), once: 'per payer and network' },
+    rows: prices.map((p): X402Row => {
+      const price = unitsOf(p);
+      const q = x402Fee(price, c.fee);
+      const pi = BigInt(lpPremium({ price: Number(price), record: null, lockSeconds: c.premium.lockSeconds, arbitrator: c.premium.arbitrator, coverMultipleBps: c.premium.coverMultipleBps }, c.lp).premium);
+      return { price: price.toString(), fee: q.fee.toString(), by_bps: q.byBps.toString(), floored: q.floored, share_bps: q.shareBps, premium_indicative: pi.toString(), buyer_pays: (price + q.fee).toString() };
+    }),
+  };
+}
+
 /** Everything wrong with a file, recomputed offline from what it recorded. [] = it holds. */
 export function verifyCalibration(c: Calibration): string[] {
   const bad: string[] = [];
@@ -91,6 +121,10 @@ export function verifyCalibration(c: Calibration): string[] {
   const prices = c.table.rows.map((r) => Number(r.price) / 1e6);
   const t = priceTable(c, prices, c.table.profile);
   if (canonical(t) !== canonical(c.table)) bad.push('table: recomputed from the snapshot, fee and legs, it differs from the file');
+  if (c.x402) {
+    const x = x402Table(c, c.x402.rows.map((r) => Number(r.price) / 1e6), c.x402);
+    if (canonical(x) !== canonical(c.x402)) bad.push('x402: recomputed from the snapshot, fee and legs, it differs from the file');
+  }
   const hist = c.history.buffer_bps_history, mc = c.history.buffer_bps_montecarlo;
   if (c.fee.gasBufferBps !== Math.max(hist, mc)) bad.push(`fee.gasBufferBps ${c.fee.gasBufferBps} ≠ max(history ${hist}, Monte Carlo ${mc})`);
   if (!c.checks.no_loss.pass) bad.push('checks.no_loss failed: a served job lost money in the Monte Carlo');

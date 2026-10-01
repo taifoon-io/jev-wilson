@@ -1,7 +1,7 @@
 import json
 import pathlib
 
-from taifoon_jev_wilson.fee import job_fee, rise_quantiles_bps
+from taifoon_jev_wilson.fee import job_fee, rise_quantiles_bps, x402_fee
 from taifoon_jev_wilson.prior import fit_prior
 
 HERE = pathlib.Path(__file__).parent
@@ -38,3 +38,10 @@ def test_prior_fit_agrees():
     assert round(f["a0"], 4) == round(v["a0"], 4) and round(f["b0"], 4) == round(v["b0"], 4)
     for k in ("sellers", "jobs", "incorrect"):
         assert f[k] == v[k]
+
+
+def test_x402_grid_unit_for_unit():
+    assert G["x402"]
+    for pi, g, price, fee, by_bps, floor, floored, share_bps in G["x402"]:
+        q = x402_fee(int(price), G["policies"][pi], int(g))
+        assert [_s(q["fee"]), _s(q["byBps"]), _s(q["floor"]), q["floored"], q["shareBps"]] == [fee, by_bps, floor, floored, share_bps], (pi, g, price)

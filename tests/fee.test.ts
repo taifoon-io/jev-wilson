@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { jobFee, riseQuantilesBps, windowRises, type GasInputs } from '../src/fee.ts';
+import { jobFee, riseQuantilesBps, windowRises, x402Fee, type GasInputs } from '../src/fee.ts';
 import { fitPrior } from '../src/prior.ts';
 
 // tests/vectors/fee-grid.json is the one truth TypeScript and Python read (scripts/gen-fee-grid.ts writes it).
@@ -44,4 +44,14 @@ test('prior fit: the recorded answer, and Beta(a0, b0) reproduces the sellers it
   for (const k of ['a0', 'b0', 'mean', 'nll'] as const) assert.ok(Math.abs(fit[k] - V.fit[k]) <= 1e-6 * Math.max(1, Math.abs(V.fit[k])), `${k}: ${fit[k]} vs ${V.fit[k]}`);
   assert.equal(Math.round(fit.a0 * 1e4), Math.round(V.fit.a0 * 1e4)); assert.equal(Math.round(fit.b0 * 1e4), Math.round(V.fit.b0 * 1e4));
   assert.ok(fit.mean > fit.pooledRate, 'the per-seller mean sits above the pooled rate: a few sellers fail often');
+});
+
+test('x402 buyer leg: TypeScript returns every row to the unit, and the fee is never below our gas + margin', () => {
+  assert.ok(G.x402.length > 0);
+  for (const [pi, g, price, fee, byBps, floor, floored, shareBps] of G.x402) {
+    const q = x402Fee(BigInt(price), G.policies[pi], BigInt(g));
+    assert.deepEqual([s(q.fee), s(q.byBps), s(q.floor), q.floored, q.shareBps], [fee, byBps, floor, floored, shareBps], `x402 ${pi}/${g}/${price}`);
+    assert.ok(q.fee >= q.floor && q.fee >= q.byBps);
+  }
+  assert.throws(() => x402Fee(0n, G.policies[0]));
 });

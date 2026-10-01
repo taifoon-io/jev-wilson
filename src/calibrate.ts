@@ -6,7 +6,8 @@
 //   3. prior             Beta(a0, b0) fitted to the chain's seller records (the coordination layer's /v1/pools)
 //   4. no-loss check     the Monte Carlo of the fee over the history; the buffer rises until no served job loses money
 //   5. backer returns    the Monte Carlo of a cover pool's year under lpPremium
-//   6. price table       fee, premium and the buyer's total at each price, from a live read of today's gas
+//   6. price table       fee, premium and the buyer's total at each price, from a live read of today's gas (and, on a chain
+//                        whose sellers take x402, the buyer leg: a hire paid to the seller by x402, our gas 0 on exact)
 //
 // Read-only: it reads public RPCs and public APIs and signs nothing. `--compare` writes nothing and exits 2 when the
 // config (fee, legs, premium parameters) would change: the scheduled run uses it to tell a gas-regime change.
@@ -18,7 +19,7 @@ import { fitPrior } from './prior.ts';
 import { gasSource, isNoHistory, word, encUint, SEL, type FeeRow, type GasSource } from './gas-source.ts';
 import { noLoss, backerReturns, type McPolicy, type BackerPolicy, type Segment } from './montecarlo.ts';
 import {
-  CALIBRATION_SCHEMA, CHAIN_ALIASES, configDigest, contentDigest, priceTable, verifyCalibration,
+  CALIBRATION_SCHEMA, CHAIN_ALIASES, configDigest, contentDigest, priceTable, verifyCalibration, x402Table,
   type Calibration, type CalLeg,
 } from './calibration.ts';
 
@@ -27,12 +28,14 @@ type ChainProfile = {
   price: { kind: 'chainlink'; chain: number; feed: string; pair: string } | { kind: 'fixed'; usd8: string; why: string };
   l1: { kind: 'op-gas-price-oracle' | 'arb-gas-info'; address: string } | { kind: 'none' };
   tip: 'percentile' | 'none'; rpcs: string[]; policy: Partial<FeePolicy>;
+  /** the chain's sellers take x402: the buyer leg is calibrated too */ x402?: { network: string; asset: string };
 };
 type Chains = { chains: Record<string, ChainProfile>; rotation: string; razor: string; sellers: string };
 type Policy = {
   fee: Omit<FeePolicy, 'gasBufferBps'>; buffer: { quantile: number; roundUpBps: number; regimeBps?: number };
   premium: { lockSeconds: number; arbitrator: boolean; coverMultipleBps: number }; table: { prices: number[]; profile: FeeProfile };
   history: { days: number; maxCalls: number; maxHeaders?: number }; montecarlo: McPolicy; backer: BackerPolicy; provisionalLegsBufferBps?: number;
+  x402?: { prices: number[] };
 };
 type LegsFile = { chainId: number; status: 'measured' | 'provisional'; source: string; measured_at: string | null; provisional_from?: number; legs: CalLeg[] };
 
@@ -46,7 +49,7 @@ const PROVISIONAL_LEGS_BUFFER_BPS = 2_500;
 
 export function chainIdOf(arg: string): number {
   const id = CHAIN_ALIASES[arg.toLowerCase()] ?? Number(arg);
-  if (!Number.isInteger(id) || id <= 0) throw new Error(`unknown chain ${arg} (base, arbitrum, arc, robinhood or a chain id)`);
+  if (!Number.isInteger(id) || id <= 0) throw new Error(`unknown chain ${arg} (base, arbitrum, arc, robinhood, monad or a chain id)`);
   return id;
 }
 
@@ -181,17 +184,18 @@ async function readLegs(src: GasSource, chainId: number, ch: ChainProfile, file:
 /** Stage 3: the sellers' records on this chain (or Base's, when the chain has none yet). */
 async function readSellers(url: string, chainId: number) {
   const recs: { correct: number; incorrect: number }[] = [];
-  let offset = 0, servedChain = chainId, total = 0;
+  let offset = 0, servedChain = chainId, total = 0, onChain = true;
   for (let guard = 0; guard < 50; guard++) {
     const r = await fetch(url.replace('{chain}', String(chainId)).replace('{offset}', String(offset)), { signal: AbortSignal.timeout(30_000) });
     if (!r.ok) throw new Error(`sellers: ${r.status}`);
-    const j = (await r.json()) as { chain?: { chainId?: number }; pools?: { history?: { record?: { correct?: number; incorrect?: number } } }[]; next_offset?: number | null; total?: number };
-    servedChain = j.chain?.chainId ?? chainId; total = j.total ?? 0;
+    const j = (await r.json()) as { chain?: { chainId?: number; assuranceDeployed?: boolean }; pools?: { history?: { record?: { correct?: number; incorrect?: number } } }[]; next_offset?: number | null; total?: number };
+    // the record is cross-chain: a chain with no assurance layer answers with the same sellers (their record is not its own)
+    servedChain = j.chain?.chainId ?? chainId; total = j.total ?? 0; onChain = j.chain?.assuranceDeployed !== false;
     for (const p of j.pools ?? []) { const rec = p.history?.record; if (rec) recs.push({ correct: rec.correct ?? 0, incorrect: rec.incorrect ?? 0 }); }
     if (j.next_offset === null || j.next_offset === undefined) break;
     offset = j.next_offset;
   }
-  return { recs, servedChain, total };
+  return { recs, servedChain, total, onChain };
 }
 
 export async function calibrate(chainArg: string, opts: CalibrateOpts): Promise<{ cal: Calibration; changed: boolean; regime: string[]; prev: Calibration | null; file: string }> {
@@ -249,7 +253,8 @@ export async function calibrate(chainArg: string, opts: CalibrateOpts): Promise<
   const url = opts.sellersUrl ?? chains.sellers;
   let sellers = await readSellers(url, chainId);
   let borrowed: number | undefined;
-  if (sellers.servedChain !== chainId || sellers.recs.filter((r) => r.correct + r.incorrect > 0).length < 2) { borrowed = 8453; sellers = await readSellers(url, 8453); }
+  const ownLayer = sellers.onChain;
+  if (sellers.servedChain !== chainId || !sellers.onChain || sellers.recs.filter((r) => r.correct + r.incorrect > 0).length < 2) { borrowed = 8453; sellers = await readSellers(url, 8453); }
   const fit = fitPrior(sellers.recs);
   const round4 = (x: number) => Math.round(x * 1e4) / 1e4;
   const lp = { ...LP_DEFAULTS, a0: round4(fit.a0), b0: round4(fit.b0) };
@@ -294,13 +299,14 @@ export async function calibrate(chainArg: string, opts: CalibrateOpts): Promise<
       note: `buffer = the p95 rise of the base fee over ${tf.format(H.horizonBlocks)} blocks${H.stride > 1 ? ` (block headers, every ${H.stride}th: the chain's public nodes answer eth_feeHistory only near the head)` : ''}, rounded up to ${policy.buffer.roundUpBps} bps, raised until the Monte Carlo finds no loss`,
     },
     prior: { a0: lp.a0, b0: lp.b0, fit_a0: fit.a0, fit_b0: fit.b0, mean: fit.mean, sellers: fit.sellers, jobs: fit.jobs, incorrect: fit.incorrect, over30: fit.over30,
-      source: url.replace('{chain}', String(borrowed ?? chainId)).replace(/&?offset=\{offset\}/, ''), ...(borrowed ? { borrowed_from: borrowed, why: `no seller with a decided job on ${ch.name} in the record yet` } : {}) },
+      source: url.replace('{chain}', String(borrowed ?? chainId)).replace(/&?offset=\{offset\}/, ''), ...(borrowed ? { borrowed_from: borrowed, why: ownLayer ? `no seller with a decided job on ${ch.name} in the record yet` : `no assurance layer on ${ch.name}: the seller record served for it is the cross-chain one, read where the layer is (Base)` } : {}) },
     gas_snapshot: snapshot,
     checks: { no_loss: { pass, criterion: 'policy B: every leg capped at the quoted gas price (maxFeePerGas), as the executor sends them; A = sent at once, reported only', samples: mc.samples, seed: mc.seed, buffer_search: trail, profiles: results }, backer: { sims: bp.sims, jobs: bp.jobs, capital_usdc: bp.capital, rows: backer } },
     table: { profile: policy.table.profile, rows: [], min_price: { direct: '0', 'stand-in': '0', relayed: '0' } },
     config_digest: '', digest: '',
   };
   cal.table = priceTable(cal, policy.table.prices, policy.table.profile);
+  if (ch.x402) cal.x402 = x402Table(cal, policy.x402?.prices ?? [0.01, 0.1, 1, 10], ch.x402);
   cal.config_digest = configDigest(cal);
   cal.version = !prev ? 1 : prev.config_digest === cal.config_digest ? prev.version : prev.version + 1;
   cal.digest = contentDigest(cal);

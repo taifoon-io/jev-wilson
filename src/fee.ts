@@ -129,3 +129,20 @@ export function windowRises(baseFees: readonly bigint[], w: number): number[] {
   }
   return out;
 }
+
+/** The fee on a hire paid to the seller by x402 (the buyer leg), when there is no settle line on the chain: no hook, so no
+ *  evaluator fee, no hook cap and no cover. On `exact` the payment is an EIP-3009 transferWithAuthorization that the seller's
+ *  facilitator sends and pays the gas of, so our gas is 0 and the fee is our routing and grade fee:
+ *
+ *    fee = max( floor(P × bps / 10,000),  our gas + margin )        our gas = 0 on exact
+ *
+ *  `shareBps` = fee / P in bps (floored). Pure, integers only; the Python twin is fee.x402_fee. */
+export type X402Fee = { fee: bigint; byBps: bigint; floor: bigint; floored: boolean; shareBps: number; ourGas: bigint };
+export function x402Fee(price: bigint, policy: Pick<FeePolicy, 'bps' | 'marginUsdc'>, ourGasUnits = 0n, decimals = 6): X402Fee {
+  if (price <= 0n) throw new RangeError('price must be positive');
+  if (ourGasUnits < 0n) throw new RangeError('our gas cannot be negative');
+  const floor = ourGasUnits + tokenUnits(policy.marginUsdc, decimals);
+  const byBps = (price * BigInt(policy.bps)) / 10_000n;
+  const fee = byBps >= floor ? byBps : floor;
+  return { fee, byBps, floor, floored: floor > byBps, shareBps: Number((fee * 10_000n) / price), ourGas: ourGasUnits };
+}

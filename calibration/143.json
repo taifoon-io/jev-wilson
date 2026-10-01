@@ -1,11 +1,11 @@
 {
  "schema": "taifoon.jev-wilson.calibration.v1",
- "chainId": 42161,
- "name": "Arbitrum One",
- "version": 2,
- "status": "measured",
- "generated_at": "2026-10-01T09:50:00.418Z",
- "library": "@taifoon/jev-wilson@0.3.0",
+ "chainId": 143,
+ "name": "Monad",
+ "version": 1,
+ "status": "provisional",
+ "generated_at": "2026-10-01T10:10:58.265Z",
+ "library": "@taifoon/jev-wilson@0.3.1",
  "fee": {
   "bps": 49,
   "marginUsdc": 0.002,
@@ -15,95 +15,104 @@
   "tipPercentile": 75,
   "maxPriceAgeS": 3600,
   "capBps": 1000,
-  "gasBufferBps": 4100
+  "gasBufferBps": 1300
  },
  "legs": {
-  "status": "measured",
-  "source": "rehearsal at block 510,622,906 (plan digest 0xf2efe58919ccee7dcb7faaecca3b8387bed367fd4187b6af27bbbdf4709397cc); receipts re-read",
-  "measured_at": "2026-10-01",
+  "status": "provisional",
+  "source": "no settle line on Monad and no receipts there: the Base fork receipts stand in (provisional, +25 %) until the line runs on Monad. Monad charges the gas limit, not the gas used, so the +25 % also stands for a limit set at the estimate x 1.2",
+  "measured_at": null,
+  "provisional_from": 8453,
+  "provisional_buffer_bps": 2500,
   "legs": [
    {
     "key": "relay-approve",
     "leg": "approve escrow (USDC)",
     "who": "relayer",
-    "gas": 55437,
+    "gas": 69297,
     "bytes": 188,
     "profiles": [
      "relayed"
     ],
-    "tx": null
+    "tx": null,
+    "measured_gas": 55437
    },
    {
     "key": "relay-open",
     "leg": "openJobWithSpec",
     "who": "relayer",
-    "gas": 396703,
+    "gas": 495879,
     "bytes": 732,
     "profiles": [
      "relayed"
     ],
-    "tx": null
+    "tx": null,
+    "measured_gas": 396703
    },
    {
     "key": "approve",
     "leg": "approve deposit (USDC)",
     "who": "stand-in",
-    "gas": 55437,
+    "gas": 69297,
     "bytes": 188,
     "profiles": [
      "stand-in",
      "relayed"
     ],
-    "tx": null
+    "tx": null,
+    "measured_gas": 55437
    },
    {
     "key": "accept",
     "leg": "accept (deposit pulled, pool encumbers)",
     "who": "stand-in",
-    "gas": 172962,
+    "gas": 216203,
     "bytes": 156,
     "profiles": [
      "stand-in",
      "relayed"
     ],
-    "tx": null
+    "tx": null,
+    "measured_gas": 172962
    },
    {
     "key": "submit",
     "leg": "submitWithDelivery",
     "who": "stand-in",
-    "gas": 49696,
+    "gas": 62120,
     "bytes": 316,
     "profiles": [
      "stand-in",
      "relayed"
     ],
-    "tx": null
+    "tx": null,
+    "measured_gas": 49696
    },
    {
     "key": "verdict",
     "leg": "postVerdict (JudgeAdapter → hook complete, fee forwarded)",
     "who": "evaluator",
-    "gas": 276101,
+    "gas": 323752,
     "bytes": 252,
     "profiles": [
      "direct",
      "stand-in",
      "relayed"
     ],
-    "tx": null
+    "tx": null,
+    "measured_gas": 259001
    },
    {
     "key": "forward",
     "leg": "forward the price to the doer (USDC transfer)",
     "who": "stand-in",
-    "gas": 62159,
+    "gas": 77699,
     "bytes": 188,
     "profiles": [
      "stand-in",
      "relayed"
     ],
-    "tx": null
+    "tx": null,
+    "measured_gas": 62159
    }
   ]
  },
@@ -123,94 +132,97 @@
   "coverMultipleBps": 10000
  },
  "chain": {
-  "fee_model": "arbitrum",
-  "gas_token": "ETH",
-  "tip": "none",
-  "block_s": 0.2678,
+  "fee_model": "none",
+  "gas_token": "MON",
+  "tip": "percentile",
+  "block_s": 0.302,
   "price": {
    "kind": "chainlink",
-   "chain": 8453,
-   "feed": "0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70",
-   "pair": "ETH / USD",
-   "why": "ETH is the same asset on every chain: one feed, read on Base (as razor does)"
+   "chain": 143,
+   "feed": "0xBcD78f76005B7515837af6b50c7C52BCf73822fb",
+   "pair": "MON / USD",
+   "why": "Chainlink's MON / USD feed on Monad itself (8 decimals, heartbeat 3,600 s): MON has no feed on Base"
   },
   "l1": {
-   "kind": "arb-gas-info",
-   "address": "0x000000000000000000000000000000000000006C"
+   "kind": "none"
   }
  },
  "history": {
-  "source": "razor + eth_feeHistory",
+  "source": "eth_feeHistory",
   "razor": "razor answered 404",
   "segments": [
    [
-    510561655,
-    510623094
+    109526474,
+    109580745
    ],
    [
-    510317549,
-    510378988
+    109331637,
+    109385908
    ],
    [
-    510073443,
-    510134882
+    109136800,
+    109191071
    ],
    [
-    509829337,
-    509890776
+    108941963,
+    108996234
    ],
    [
-    509585231,
-    509646670
+    108747126,
+    108801397
    ],
    [
-    509341125,
-    509402564
+    108552289,
+    108606560
    ],
    [
-    509097019,
-    509158458
+    108357452,
+    108411723
    ],
    [
-    508852913,
-    508914352
+    108162615,
+    108216886
    ],
    [
-    508608807,
-    508670246
+    107967778,
+    108022049
    ],
    [
-    508364701,
-    508426140
+    107772941,
+    107827212
+   ],
+   [
+    107578104,
+    107632375
    ]
   ],
-  "blocks": 614400,
+  "blocks": 596992,
   "days": 7,
   "horizon_s": 3900,
-  "horizon_blocks": 14564,
+  "horizon_blocks": 12914,
   "sampled_every_blocks": 1,
-  "horizon_rows": 14564,
+  "horizon_rows": 12914,
   "rise_bps": {
-   "p50": 900,
-   "p90": 3009,
-   "p95": 4079,
-   "p99": 8233,
-   "max": 8239
+   "p50": 602,
+   "p90": 889,
+   "p95": 1228,
+   "p99": 2493,
+   "max": 2493
   },
   "base_fee_wei": {
-   "min": "20000000",
-   "p50": "20020000",
-   "p95": "20240000",
-   "max": "36478000"
+   "min": "100000000000",
+   "p50": "100000000000",
+   "p95": "100000000000",
+   "max": "124936056983"
   },
   "tip_wei": {
    "percentile": 75,
-   "p50": "0",
-   "p95": "0"
+   "p50": "5000000001",
+   "p95": "80000000000"
   },
-  "buffer_bps_history": 4100,
-  "buffer_bps_montecarlo": 4100,
-  "note": "buffer = the p95 rise of the base fee over 14,564 blocks, rounded up to 100 bps, raised until the Monte Carlo finds no loss"
+  "buffer_bps_history": 1300,
+  "buffer_bps_montecarlo": 1300,
+  "note": "buffer = the p95 rise of the base fee over 12,914 blocks, rounded up to 100 bps, raised until the Monte Carlo finds no loss"
  },
  "prior": {
   "a0": 0.1666,
@@ -222,24 +234,20 @@
   "jobs": 4702,
   "incorrect": 220,
   "over30": 0.2191780821917808,
-  "source": "https://coord.taifoon.dev/v1/pools?chain=42161&limit=200"
+  "source": "https://coord.taifoon.dev/v1/pools?chain=8453&limit=200",
+  "borrowed_from": 8453,
+  "why": "no assurance layer on Monad: the seller record served for it is the cross-chain one, read where the layer is (Base)"
  },
  "gas_snapshot": {
-  "source": "razor",
-  "block": 510624002,
-  "at": 1790848429,
-  "base_fee_wei": "20092000",
-  "tip_wei": "0",
-  "live_buffer_bps": 578,
-  "l1_fee_wei_by_bytes": {
-   "156": "11521025664",
-   "188": "12766541952",
-   "252": "15257574528",
-   "316": "17748607104",
-   "732": "33940318848"
-  },
-  "gas_usd8": "269215000000",
-  "gas_usd_updated_at": 1790848353
+  "source": "json-rpc",
+  "block": 109582290,
+  "at": 1790849924,
+  "base_fee_wei": "100000000000",
+  "tip_wei": "10000000000",
+  "live_buffer_bps": 0,
+  "l1_fee_wei_by_bytes": {},
+  "gas_usd8": "3158000",
+  "gas_usd_updated_at": 1790849921
  },
  "checks": {
   "no_loss": {
@@ -249,7 +257,7 @@
    "seed": 7,
    "buffer_search": [
     {
-     "buffer_bps": 4100,
+     "buffer_bps": 1300,
      "losses": 0,
      "send_at_once_losses": 0
     }
@@ -258,58 +266,58 @@
     {
      "profile": "direct",
      "samples": 20000,
-     "served_share": 0.34415,
-     "mean_fee_usdc": 0.07106151663518702,
+     "served_share": 0.69105,
+     "mean_fee_usdc": 0.03310463085159948,
      "A": {
       "losses": 0,
       "loss_share": 0,
-      "mean_margin_usdc": 0.0561138710129851,
-      "worst_margin_usdc": 0.007588215861853504
+      "mean_margin_usdc": 0.03202301792193104,
+      "worst_margin_usdc": 0.0021012574454241212
      },
      "B": {
       "losses": 0,
       "loss_share": 0,
-      "mean_margin_usdc": 0.0561138710129851,
+      "mean_margin_usdc": 0.03202302225001834,
       "wait_p95_s": 0,
-      "wait_max_s": 0
+      "wait_max_s": 0.302
      }
     },
     {
      "profile": "stand-in",
      "samples": 20000,
-     "served_share": 0.29095,
-     "mean_fee_usdc": 0.09639793607149104,
+     "served_share": 0.58705,
+     "mean_fee_usdc": 0.0396338075121392,
      "A": {
       "losses": 0,
       "loss_share": 0,
-      "mean_margin_usdc": 0.06293385826124066,
-      "worst_margin_usdc": 0.01393694188986977
+      "mean_margin_usdc": 0.037131345218663764,
+      "worst_margin_usdc": 0.0022293841711977947
      },
      "B": {
       "losses": 0,
       "loss_share": 0,
-      "mean_margin_usdc": 0.06293385826124066,
+      "mean_margin_usdc": 0.03713135251381317,
       "wait_p95_s": 0,
-      "wait_max_s": 0
+      "wait_max_s": 0.302
      }
     },
     {
      "profile": "relayed",
      "samples": 20000,
-     "served_share": 0.2565,
-     "mean_fee_usdc": 0.12734026062377962,
+     "served_share": 0.49275,
+     "mean_fee_usdc": 0.04693989761542533,
      "A": {
       "losses": 0,
       "loss_share": 0,
-      "mean_margin_usdc": 0.069338007562346,
-      "worst_margin_usdc": 0.025027509514365033
+      "mean_margin_usdc": 0.04255046907105387,
+      "worst_margin_usdc": 0.0025012781735952354
      },
      "B": {
       "losses": 0,
       "loss_share": 0,
-      "mean_margin_usdc": 0.069338007562346,
+      "mean_margin_usdc": 0.042550477762312036,
       "wait_p95_s": 0,
-      "wait_max_s": 0
+      "wait_max_s": 0.302
      }
     }
    ]
@@ -437,19 +445,19 @@
   "rows": [
    {
     "price": "1000000",
-    "fee": "50693",
+    "fee": "4997",
     "premium": "154",
-    "total": "1050847",
+    "total": "1005151",
     "served": true,
     "floored": true
    },
    {
     "price": "10000000",
-    "fee": "50693",
+    "fee": "49000",
     "premium": "633",
-    "total": "10051326",
+    "total": "10049633",
     "served": true,
-    "floored": true
+    "floored": false
    },
    {
     "price": "100000000",
@@ -461,11 +469,65 @@
    }
   ],
   "min_price": {
-   "direct": "237500",
-   "stand-in": "506930",
-   "relayed": "863940"
+   "direct": "32960",
+   "stand-in": "49970",
+   "relayed": "72590"
   }
  },
- "config_digest": "0x998e5c4bed473e3d920b38e98d270957c4ba016545a055fe95f1798c3f434148",
- "digest": "0x748841b2c4aeb5ac8d5f0189f4f414e69373ad332bd3cdf5ed85d7d618ff1caa"
+ "config_digest": "0x39ae3bd439b1a8dba065f61112bbef62df5c3ecdcdf996a4424a343683bdcfbb",
+ "digest": "0x6b94d3d23d6d9a513a0bcc77ea55e00f4cbb5365f97eaf3512246ac0d950b125",
+ "x402": {
+  "network": "eip155:143",
+  "asset": "0x754704Bc059F8C67012fEd69BC8A327a5aafb603",
+  "scheme": "exact",
+  "our_gas_units": "0",
+  "settle_line": false,
+  "cover": false,
+  "note": "exact = EIP-3009 transferWithAuthorization: the seller's facilitator sends it and pays its gas, so our gas is 0. No settle line on this chain: the fee is our routing and grade fee (no evaluator fee, no hook cap), and no cover pool exists, so the premium is indicative only and the buyer pays price + fee",
+  "upto_setup": {
+   "leg": "Permit2 approval of USDC (approve leg, provisional)",
+   "gas": 69297,
+   "bytes": 188,
+   "cost_units": "278",
+   "once": "per payer and network"
+  },
+  "rows": [
+   {
+    "price": "10000",
+    "fee": "2000",
+    "by_bps": "49",
+    "floored": true,
+    "share_bps": 2000,
+    "premium_indicative": "101",
+    "buyer_pays": "12000"
+   },
+   {
+    "price": "100000",
+    "fee": "2000",
+    "by_bps": "490",
+    "floored": true,
+    "share_bps": 200,
+    "premium_indicative": "106",
+    "buyer_pays": "102000"
+   },
+   {
+    "price": "1000000",
+    "fee": "4900",
+    "by_bps": "4900",
+    "floored": false,
+    "share_bps": 49,
+    "premium_indicative": "154",
+    "buyer_pays": "1004900"
+   },
+   {
+    "price": "10000000",
+    "fee": "49000",
+    "by_bps": "49000",
+    "floored": false,
+    "share_bps": 49,
+    "premium_indicative": "633",
+    "buyer_pays": "10049000"
+   }
+  ]
+ }
 }

@@ -1,0 +1,93 @@
+{
+ "_": "Our transactions on one job settled through the line, with the gas each used (its receipt) and its signed size (calldata + 120 bytes for the EIP-1559 envelope, for the L1 data fee). `tx` is set when the receipt is on this chain; the calibration then re-reads it.",
+ "chainId": 143,
+ "status": "provisional",
+ "source": "no settle line on Monad and no receipts there: the Base fork receipts stand in (provisional, +25 %) until the line runs on Monad. Monad charges the gas limit, not the gas used, so the +25 % also stands for a limit set at the estimate x 1.2",
+ "measured_at": null,
+ "legs": [
+  {
+   "key": "relay-approve",
+   "leg": "approve escrow (USDC)",
+   "who": "relayer",
+   "gas": 55437,
+   "bytes": 188,
+   "profiles": [
+    "relayed"
+   ],
+   "tx": null
+  },
+  {
+   "key": "relay-open",
+   "leg": "openJobWithSpec",
+   "who": "relayer",
+   "gas": 396703,
+   "bytes": 732,
+   "profiles": [
+    "relayed"
+   ],
+   "tx": null
+  },
+  {
+   "key": "approve",
+   "leg": "approve deposit (USDC)",
+   "who": "stand-in",
+   "gas": 55437,
+   "bytes": 188,
+   "profiles": [
+    "stand-in",
+    "relayed"
+   ],
+   "tx": null
+  },
+  {
+   "key": "accept",
+   "leg": "accept (deposit pulled, pool encumbers)",
+   "who": "stand-in",
+   "gas": 172962,
+   "bytes": 156,
+   "profiles": [
+    "stand-in",
+    "relayed"
+   ],
+   "tx": null
+  },
+  {
+   "key": "submit",
+   "leg": "submitWithDelivery",
+   "who": "stand-in",
+   "gas": 49696,
+   "bytes": 316,
+   "profiles": [
+    "stand-in",
+    "relayed"
+   ],
+   "tx": null
+  },
+  {
+   "key": "verdict",
+   "leg": "postVerdict (JudgeAdapter → hook complete, fee forwarded)",
+   "who": "evaluator",
+   "gas": 259001,
+   "bytes": 252,
+   "profiles": [
+    "direct",
+    "stand-in",
+    "relayed"
+   ],
+   "tx": null
+  },
+  {
+   "key": "forward",
+   "leg": "forward the price to the doer (USDC transfer)",
+   "who": "stand-in",
+   "gas": 62159,
+   "bytes": 188,
+   "profiles": [
+    "stand-in",
+    "relayed"
+   ],
+   "tx": null
+  }
+ ],
+ "provisional_from": 8453
+}

@@ -97,6 +97,42 @@
     "https://robinhood-rpc.publicnode.com"
    ],
    "policy": {}
+  },
+  "143": {
+   "name": "Monad",
+   "fee_model": "none",
+   "gas_token": "MON",
+   "gas_token_vol_per_hour": 0.016,
+   "gas_token_vol_why": "the standard deviation of MON/USD hourly log returns over the 7 days to 2026-10-01 (Chainlink MON / USD on Monad, one round per hour): 0.0155, rounded up; over 16 days it reads 0.013",
+   "price": {
+    "kind": "chainlink",
+    "chain": 143,
+    "feed": "0xBcD78f76005B7515837af6b50c7C52BCf73822fb",
+    "pair": "MON / USD",
+    "why": "Chainlink's MON / USD feed on Monad itself (8 decimals, heartbeat 3,600 s): MON has no feed on Base"
+   },
+   "l1": {
+    "kind": "none"
+   },
+   "tip": "percentile",
+   "rpcs": [
+    "https://rpc.monad.xyz",
+    "https://rpc1.monad.xyz",
+    "https://rpc2.monad.xyz",
+    "https://rpc-mainnet.monadinfra.com"
+   ],
+   "policy": {},
+   "gas_charge": "Monad charges the gas LIMIT a transaction sets, not the gas it uses: a sender that sets the limit at its estimate x 1.2 pays about that, which the provisional legs' +25 % covers",
+   "x402": {
+    "network": "eip155:143",
+    "asset": "0x754704Bc059F8C67012fEd69BC8A327a5aafb603",
+    "asset_name": "USDC",
+    "schemes": [
+     "exact",
+     "upto"
+    ],
+    "why": "sellers on Monad take x402 in USDC here; exact is EIP-3009 transferWithAuthorization (the seller's facilitator sends it and pays its gas); upto settles through Permit2 and needs one approval from the payer"
+   }
   }
  },
  "rotation": "https://warmbed.taifoon.dev/warmbed/chain/{chain}/rotation?need=call&n=8",

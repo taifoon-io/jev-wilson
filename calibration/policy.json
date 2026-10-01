@@ -82,5 +82,14 @@
   "book": 20
  },
  "provisionalLegsBufferBps": 2500,
- "provisionalLegsBufferWhy": "a chain whose legs have no receipt of its own yet borrows another chain's (provisional): +25 % on that gas until its own rehearsal is re-read"
+ "provisionalLegsBufferWhy": "a chain whose legs have no receipt of its own yet borrows another chain's (provisional): +25 % on that gas until its own rehearsal is re-read",
+ "x402": {
+  "prices": [
+   0.01,
+   0.1,
+   1,
+   10
+  ],
+  "why": "the x402 buyer leg (a hire paid to the seller by x402): our gas is 0 on exact (the seller's facilitator sends the EIP-3009 transfer), so the fee is max(bps, margin). With no settle line on the chain there is no hook: no evaluator fee, no hook cap, no cover pool"
+ }
 }

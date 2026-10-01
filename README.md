@@ -103,6 +103,8 @@ The numbers these modules take are measured, per chain, by one command:
 npx @taifoon/jev-wilson calibrate base --out ./calibration
 ```
 
+With no `--out`, the result goes to `./calibration` in the working directory.
+
 It reads only public data and signs nothing:
 
 1. the chain's fee history over 7 days (the razor gas service, else `eth_feeHistory`, else block headers): the p95 rise of
@@ -118,9 +120,29 @@ It reads only public data and signs nothing:
 The result is `calibration/<chainId>.json`, versioned: `version` moves when the fee, the legs or the premium parameters
 change, `digest` covers the whole file and `config_digest` what a fee config reads. `jev-wilson calibration check` recomputes
 every file's table and digests offline; `jev-wilson calibration show base` prints the table. `--compare` writes nothing and
-exits 2 on a gas-regime change. Chains: `base`, `arbitrum`, `arc`, `robinhood`. The package ships the calibration it was
+exits 2 on a gas-regime change. Chains: `base`, `arbitrum`, `arc`, `robinhood`, `monad`. The package ships the calibration it was
 released with, and `.github/workflows/calibrate.yml` re-runs it weekly (and every 6 hours checks for a regime change),
 publishing each result as a release of this repository.
+
+### Monad and the x402 buyer leg
+
+```
+npx @taifoon/jev-wilson calibrate monad
+```
+
+Monad (chain 143) has no settle line, so its legs are Base's, marked `provisional` with 25 % added (Monad charges the gas
+limit a transaction sets, not the gas it uses). Its gas token is MON, priced by Chainlink's MON / USD feed on Monad
+(`0xBcD78f76005B7515837af6b50c7C52BCf73822fb`). Fee history comes from four public Monad RPCs.
+
+Sellers on Monad take x402 in USDC (`0x754704Bc059F8C67012fEd69BC8A327a5aafb603`), so the calibration also prices the
+buyer leg, a hire paid to the seller by x402 (`x402` in the file, `x402Fee` in `@taifoon/jev-wilson/fee`,
+`taifoon_jev_wilson.fee.x402_fee` in Python):
+
+- `exact` is an EIP-3009 `transferWithAuthorization`. The seller's facilitator sends it and pays its gas, so our gas is 0.
+- With no settle line there is no hook: the fee is our routing and grade fee, `max(bps of the price, margin)`. There is no
+  evaluator fee, no hook cap, and no cover pool, so the buyer pays the price plus the fee. The premium column shows what a
+  cover pool would charge if one existed.
+- `upto` settles through Permit2 and needs one approval per payer; `upto_setup` prices it at the snapshot.
 
 ## MCP
 
