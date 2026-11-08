@@ -1,0 +1,41 @@
+{
+ "_": "The GRID line's choices: the input of scripts/gen-grid-calibration.ts, which writes calibration/grid-3692781.json. Policy, not measurement: every measured number (gas, legs, the prior, the buffer) is borrowed from the source chain's calibration. Owner, 2026-10-06: GRID is one more pool and job asset; a GRID job is priced, covered and made whole in GRID, on Taifoon mainnet where GRID lives.",
+ "decided": "2026-10-06",
+ "line": "grid",
+ "chainId": 3692781,
+ "name": "Taifoon mainnet (GRID)",
+ "version": 1,
+ "borrowed_from": 8453,
+ "borrowed_why": "the line's own receipts do not exist yet (it opens when GRID can be deposited into pools; GRID cannot move into the assurance contracts today): the GRID line borrows Base's calibrated gas snapshot, legs, prior, buffer and fee policy as-is until its own receipts are re-read.",
+ "asset": {
+  "symbol": "GRID",
+  "decimals": 18,
+  "peg_usd": "0.01",
+  "why": "GridCredit on Taifoon mainnet: 18 decimals, PEG_USD_CENTS = 1 ($0.01, a constant). fee_decimals = 18 + log10(1 / 0.01) = 20: our gas and margin (USD) convert to GRID wei at the peg, 1 USDC unit = 1e14 GRID wei."
+ },
+ "lp": {
+  "from_source": [
+   "a0",
+   "b0",
+   "lambda",
+   "severity",
+   "utilization",
+   "maxRatio"
+  ],
+  "from_source_why": "the record prices a seller the same whatever token the job is paid in: the fitted prior, the risk loading, the payout share, the locked share and the max ratio are Base's",
+  "lpYield": 0.01,
+  "lpYield_why": "near zero: earned GRID has a cost basis of 0 (nothing was paid for it) and bought GRID's is the peg, with no rate to forgo on chain. 1 % rather than 0 keeps the backers' leg above zero on a line with no arbitrator (capital + ops) and gives the hook a backers' floor: setEconomyBounds(3000, 100, payee) on the GRID line",
+  "opsUnitsScale": "100000000000000",
+  "opsUnits_why": "the backers' own gas per job is Base's opsUnits (USDC units) converted at the peg: x 1e14 GRID wei per USDC unit (100 -> 1e16 = 0.01 GRID)"
+ },
+ "table": {
+  "prices": [
+   100,
+   1000,
+   10000
+  ],
+  "prices_why": "whole GRID: $1, $10, $100 at the peg",
+  "profile": "stand-in"
+ },
+ "readiness": "Opens when GRID can be deposited into pools."
+}

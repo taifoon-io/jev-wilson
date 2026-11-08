@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "taifoon-jev-wilson"
-version = "0.3.1"
+version = "0.5.0"
 description = "Price assurance from a seller's record: the Wilson score interval on delivered and failed jobs, mapped to a coverage premium. Bit for bit with the TypeScript package."
 readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 requires-python = ">=3.9"
-authors = [{ name = "Taifoon", email = "taifooon@proton.me" }]
+authors = [{ name = "Taifoon", email = "builders@taifoon.io" }]
 keywords = ["wilson-score", "wilson-interval", "confidence-interval", "premium", "insurance", "underwriting", "reputation", "erc-8183", "agentic-commerce", "jev", "typesafe"]
 classifiers = [
   "Programming Language :: Python :: 3",

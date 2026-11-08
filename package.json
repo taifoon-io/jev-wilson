@@ -1,9 +1,9 @@
 {
   "name": "@taifoon/jev-wilson",
-  "version": "0.3.1",
-  "description": "Price agent jobs settled through an evaluator: the fee that never loses (max of bps and our gas at the quoted price), the cover premium from a seller's record (Wilson bound, or the pool holder's Beta-Binomial price), and a one-command calibration per chain. TypeScript and Python, bit for bit. Optional grading with TypeSafe's Jev.",
+  "version": "0.5.0",
+  "description": "Price AI agent jobs from the seller's record: the Wilson-bound cover premium, the fee that never loses (max of bps and our gas at the quoted price), every number of an assured job (premium legs, deposit, compensation), the 20 % resale margin, and one calibration command per chain. TypeScript, Python and Solidity, to the unit. Optional grading with TypeSafe's Jev.",
   "license": "Apache-2.0",
-  "author": "Taifoon <taifooon@proton.me>",
+  "author": "Taifoon <builders@taifoon.io>",
   "homepage": "https://github.com/taifoon-io/jev-wilson#readme",
   "repository": {
     "type": "git",
@@ -29,7 +29,16 @@
     "gas",
     "fee",
     "calibration",
-    "monte-carlo"
+    "monte-carlo",
+    "two-sided-assurance",
+    "taifoon",
+    "assurance",
+    "escrow",
+    "solidity",
+    "python",
+    "x402",
+    "beta-binomial",
+    "risk-pricing"
   ],
   "type": "module",
   "main": "./dist/wilson.js",
@@ -55,6 +64,18 @@
       "types": "./dist/fee.d.ts",
       "default": "./dist/fee.js"
     },
+    "./split": {
+      "types": "./dist/split.d.ts",
+      "default": "./dist/split.js"
+    },
+    "./margin": {
+      "types": "./dist/margin.d.ts",
+      "default": "./dist/margin.js"
+    },
+    "./economy": {
+      "types": "./dist/economy.d.ts",
+      "default": "./dist/economy.js"
+    },
     "./prior": {
       "types": "./dist/prior.d.ts",
       "default": "./dist/prior.js"
@@ -65,7 +86,19 @@
     },
     "./calibration/*": "./calibration/*",
     "./schemas/*": "./schemas/*",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./bets": {
+      "types": "./dist/bets.d.ts",
+      "default": "./dist/bets.js"
+    },
+    "./bets-scenarios": {
+      "types": "./dist/bets-scenarios.d.ts",
+      "default": "./dist/bets-scenarios.js"
+    },
+    "./bets-mc": {
+      "types": "./dist/bets-mc.d.ts",
+      "default": "./dist/bets-mc.js"
+    }
   },
   "bin": {
     "jev-wilson": "dist/cli.js"
@@ -77,7 +110,8 @@
     "solidity/src",
     "examples",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "engines": {
     "node": ">=20"
@@ -95,7 +129,11 @@
     "prepack": "npm run build",
     "vectors:fee": "node --experimental-strip-types --no-warnings scripts/gen-fee-grid.ts",
     "calibrate": "node --experimental-strip-types --no-warnings src/cli.ts calibrate",
-    "calibration:check": "node --experimental-strip-types --no-warnings src/cli.ts calibration check"
+    "calibration:check": "node --experimental-strip-types --no-warnings src/cli.ts calibration check",
+    "vectors:bets": "node --experimental-strip-types --no-warnings scripts/gen-bets-vectors.ts",
+    "vectors:economy": "node --experimental-strip-types --no-warnings scripts/gen-economy-grid.ts",
+    "calibration:grid": "node --experimental-strip-types --no-warnings scripts/gen-grid-calibration.ts",
+    "examples:economy": "node --experimental-strip-types --no-warnings scripts/economy-examples.ts"
   },
   "peerDependencies": {
     "@typesafe-ai/sdk": "^0.6.0"

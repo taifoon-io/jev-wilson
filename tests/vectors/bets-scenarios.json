@@ -1,0 +1,3823 @@
+{
+ "schema": "taifoon.jev-wilson.bets-scenarios.v1",
+ "script": {
+  "name": "taifoon.assurance.scenarios.v1",
+  "params": {
+   "a0": "166600000000000000",
+   "b0": "929700000000000000",
+   "lambda": "2000000000000000000",
+   "lpYield": "100000000000000000",
+   "utilization": "250000000000000000",
+   "maxRatio": "300000000000000000",
+   "pMin": "5000000000000000",
+   "feeBps": "49",
+   "minFee": "1000",
+   "coverMultipleBps": "10000",
+   "againstMultipleBps": "10000",
+   "perBuyerCap": "3",
+   "minDistinctBuyers": "3",
+   "seniorPerRound": "200000",
+   "lockCutoffS": "30",
+   "voidGraceS": "120"
+  },
+  "jobs": {
+   "j07": {
+    "buyer": "b1",
+    "seller": "sellerA",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j11a": {
+    "buyer": "b2",
+    "seller": "sellerA",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j01": {
+    "buyer": "b3",
+    "seller": "sellerA",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j03": {
+    "buyer": "b4",
+    "seller": "sellerA",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j08": {
+    "buyer": "b5",
+    "seller": "sellerA",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j09": {
+    "buyer": "b1",
+    "seller": "sellerA",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j06": {
+    "buyer": "b2",
+    "seller": "sellerA",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j02": {
+    "buyer": "b5",
+    "seller": "sellerA",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "jB1": {
+    "buyer": "b1",
+    "seller": "sellerB",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "jB2": {
+    "buyer": "b2",
+    "seller": "sellerB",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j05": {
+    "buyer": "b3",
+    "seller": "sellerB",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j04": {
+    "buyer": "b4",
+    "seller": "sellerB",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j12s": {
+    "buyer": "b1",
+    "seller": "sellerC",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j12c": {
+    "buyer": "b2",
+    "seller": "sellerC",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j12v": {
+    "buyer": "b3",
+    "seller": "sellerC",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j10": {
+    "buyer": "b4",
+    "seller": "sellerC",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j10c": {
+    "buyer": "b4",
+    "seller": "sellerC",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j10n": {
+    "buyer": "b5",
+    "seller": "sellerC",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   },
+   "j10s": {
+    "buyer": "b1",
+    "seller": "sellerC",
+    "price": "1000000",
+    "deadline": "10000",
+    "reviewWindow": "60",
+    "disputeWindow": "60",
+    "arbitrationWindow": "120"
+   }
+  },
+  "ops": [
+   {
+    "s": "S07",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerA",
+    "job": "j07",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S07",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerA",
+    "job": "j07",
+    "amount": "500000",
+    "now": "1000"
+   },
+   {
+    "s": "S07",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "backer1",
+    "job": "j07",
+    "amount": "400000",
+    "now": "1000"
+   },
+   {
+    "s": "S07",
+    "t": "pos_withdraw_for_part",
+    "op": "withdrawFor",
+    "caller": "backer1",
+    "pos": 1,
+    "amount": "100000",
+    "now": "1000"
+   },
+   {
+    "s": "S07",
+    "t": "ref_withdraw_not_owner",
+    "op": "withdrawFor",
+    "caller": "backer2",
+    "pos": 1,
+    "amount": "1",
+    "now": "1000",
+    "expect": "NotOwner"
+   },
+   {
+    "s": "S07",
+    "t": "pos_withdraw_for_all",
+    "op": "withdrawFor",
+    "caller": "backer1",
+    "pos": 1,
+    "amount": "300000",
+    "now": "1000"
+   },
+   {
+    "s": "S07",
+    "t": "ref_claim_unresolved",
+    "op": "claim",
+    "pos": 0,
+    "expect": "NotResolved"
+   },
+   {
+    "s": "S07",
+    "t": "ref_lock_too_early",
+    "op": "lock",
+    "job": "j07",
+    "now": "1000",
+    "expect": "NotLockable"
+   },
+   {
+    "s": "S07",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j07",
+    "state": "Submitted"
+   },
+   {
+    "s": "S07",
+    "t": "job_auto_complete",
+    "op": "job",
+    "job": "j07",
+    "state": "Completed"
+   },
+   {
+    "s": "S07",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "job": "j07"
+   },
+   {
+    "s": "S07",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 0
+   },
+   {
+    "s": "S07",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "job": "j07"
+   },
+   {
+    "s": "S11",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "b2",
+    "job": "j11a",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S11",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerA",
+    "job": "j11a",
+    "amount": "1000000",
+    "now": "1000"
+   },
+   {
+    "s": "S11",
+    "t": "ref_not_insurable",
+    "op": "openCover",
+    "caller": "b2",
+    "job": "j11a",
+    "x": "10000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "NotInsurable"
+   },
+   {
+    "s": "S11",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j11a",
+    "state": "Submitted"
+   },
+   {
+    "s": "S11",
+    "t": "job_complete_jev",
+    "op": "job",
+    "job": "j11a",
+    "state": "Completed"
+   },
+   {
+    "s": "S11",
+    "t": "round_lock",
+    "op": "lock",
+    "job": "j11a",
+    "now": "1000"
+   },
+   {
+    "s": "S11",
+    "t": "round_resolve_delivered",
+    "op": "resolve",
+    "job": "j11a"
+   },
+   {
+    "s": "S11",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 2
+   },
+   {
+    "s": "S11",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "job": "j11a"
+   },
+   {
+    "s": "S01",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "b3",
+    "job": "j01",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S01",
+    "t": "ref_open_round_twice",
+    "op": "openRound",
+    "caller": "b3",
+    "job": "j01",
+    "classId": "code.typed",
+    "now": "1000",
+    "expect": "RoundExists"
+   },
+   {
+    "s": "S01",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerA",
+    "job": "j01",
+    "amount": "1000000",
+    "now": "1000"
+   },
+   {
+    "s": "S01",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "backer1",
+    "job": "j01",
+    "amount": "500000",
+    "now": "1000"
+   },
+   {
+    "s": "S01",
+    "t": "ref_position_zero",
+    "op": "openFor",
+    "caller": "backer1",
+    "job": "j01",
+    "amount": "0",
+    "now": "1000",
+    "expect": "ZeroAmount"
+   },
+   {
+    "s": "S01",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "caller": "b3",
+    "job": "j01",
+    "x": "200000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S01",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "caller": "ch1",
+    "job": "j01",
+    "x": "100000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S01",
+    "t": "ref_against_by_seller",
+    "op": "openAgainst",
+    "caller": "sellerA",
+    "job": "j01",
+    "x": "1000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "SellerCannotChallenge"
+   },
+   {
+    "s": "S01",
+    "t": "ref_against_by_buyer",
+    "op": "openAgainst",
+    "caller": "b3",
+    "job": "j01",
+    "x": "1000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "BuyerUsesCover"
+   },
+   {
+    "s": "S01",
+    "t": "ref_cover_by_stranger",
+    "op": "openCover",
+    "caller": "stranger",
+    "job": "j01",
+    "x": "1000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "NotBuyer"
+   },
+   {
+    "s": "S01",
+    "t": "ref_price_moved",
+    "op": "openAgainst",
+    "caller": "ch2",
+    "job": "j01",
+    "x": "1000",
+    "maxPrice": "1",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "PriceAboveMax"
+   },
+   {
+    "s": "S01",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j01",
+    "state": "Submitted"
+   },
+   {
+    "s": "S01",
+    "t": "round_lock",
+    "op": "lock",
+    "job": "j01",
+    "now": "1000"
+   },
+   {
+    "s": "S01",
+    "t": "ref_position_locked",
+    "op": "openAgainst",
+    "caller": "ch2",
+    "job": "j01",
+    "x": "1000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "RoundNotOpen"
+   },
+   {
+    "s": "S01",
+    "t": "ref_withdraw_locked",
+    "op": "withdrawFor",
+    "caller": "backer1",
+    "pos": 4,
+    "amount": "500000",
+    "now": "1000",
+    "expect": "RoundNotOpen"
+   },
+   {
+    "s": "S01",
+    "t": "ref_resolve_not_ended",
+    "op": "resolve",
+    "job": "j01",
+    "expect": "NoOutcome"
+   },
+   {
+    "s": "S01",
+    "t": "job_complete_code",
+    "op": "job",
+    "job": "j01",
+    "state": "Completed"
+   },
+   {
+    "s": "S01",
+    "t": "round_resolve_delivered",
+    "op": "resolve",
+    "job": "j01"
+   },
+   {
+    "s": "S01",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 3
+   },
+   {
+    "s": "S01",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 4
+   },
+   {
+    "s": "S01",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "pos": 5
+   },
+   {
+    "s": "S01",
+    "t": "ref_settle_unclaimed",
+    "op": "sweep",
+    "job": "j01",
+    "expect": "PositionsOutstanding"
+   },
+   {
+    "s": "S01",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "pos": 6
+   },
+   {
+    "s": "S01",
+    "t": "ref_claim_twice",
+    "op": "claim",
+    "pos": 6,
+    "expect": "PositionNotActive"
+   },
+   {
+    "s": "S01",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "job": "j01"
+   },
+   {
+    "s": "S03",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerA",
+    "job": "j03",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S03",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerA",
+    "job": "j03",
+    "amount": "600000",
+    "now": "1000"
+   },
+   {
+    "s": "S03",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "caller": "b4",
+    "job": "j03",
+    "x": "100000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S03",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j03",
+    "state": "Submitted"
+   },
+   {
+    "s": "S03",
+    "t": "job_reject_jev",
+    "op": "job",
+    "job": "j03",
+    "state": "RejectPending"
+   },
+   {
+    "s": "S03",
+    "t": "job_dispute",
+    "op": "job",
+    "job": "j03",
+    "state": "Disputed"
+   },
+   {
+    "s": "S03",
+    "t": "job_rule_seller",
+    "op": "job",
+    "job": "j03",
+    "state": "Completed"
+   },
+   {
+    "s": "S03",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "job": "j03"
+   },
+   {
+    "s": "S03",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 7
+   },
+   {
+    "s": "S03",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "pos": 8
+   },
+   {
+    "s": "S03",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "job": "j03"
+   },
+   {
+    "s": "S08",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "b5",
+    "job": "j08",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S08",
+    "t": "ref_collateral",
+    "op": "openAgainst",
+    "caller": "ch1",
+    "job": "j08",
+    "x": "50000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "Undercollateralised"
+   },
+   {
+    "s": "S08",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerA",
+    "job": "j08",
+    "amount": "400000",
+    "now": "1000"
+   },
+   {
+    "s": "S08",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "caller": "ch1",
+    "job": "j08",
+    "x": "50000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S08",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j08",
+    "state": "Submitted"
+   },
+   {
+    "s": "S08",
+    "t": "job_complete_code",
+    "op": "job",
+    "job": "j08",
+    "state": "Completed"
+   },
+   {
+    "s": "S08",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "job": "j08"
+   },
+   {
+    "s": "S08",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 9
+   },
+   {
+    "s": "S08",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "pos": 10
+   },
+   {
+    "s": "S08",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "job": "j08"
+   },
+   {
+    "s": "S09",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerA",
+    "job": "j09",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S09",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerA",
+    "job": "j09",
+    "amount": "200000",
+    "now": "1000"
+   },
+   {
+    "s": "S09",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "backer2",
+    "job": "j09",
+    "amount": "3000000",
+    "now": "1000"
+   },
+   {
+    "s": "S09",
+    "t": "ref_cover_cap",
+    "op": "openCover",
+    "caller": "b1",
+    "job": "j09",
+    "x": "400000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "CoverCap"
+   },
+   {
+    "s": "S09",
+    "t": "ref_against_cap",
+    "op": "openAgainst",
+    "caller": "ch1",
+    "job": "j09",
+    "x": "400000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "AgainstCap"
+   },
+   {
+    "s": "S09",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "caller": "b1",
+    "job": "j09",
+    "x": "140000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S09",
+    "t": "ref_senior_cap",
+    "op": "openAgainst",
+    "caller": "ch1",
+    "job": "j09",
+    "x": "100000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "SeniorCap"
+   },
+   {
+    "s": "S09",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "caller": "ch1",
+    "job": "j09",
+    "x": "50000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S09",
+    "t": "ref_withdraw_breaks_collateral",
+    "op": "withdrawFor",
+    "caller": "sellerA",
+    "pos": 11,
+    "amount": "200000",
+    "now": "1000",
+    "expect": "SeniorCap"
+   },
+   {
+    "s": "S09",
+    "t": "ref_withdraw_against",
+    "op": "withdrawFor",
+    "caller": "b1",
+    "pos": 13,
+    "amount": "1",
+    "now": "1000",
+    "expect": "NotFor"
+   },
+   {
+    "s": "S09",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j09",
+    "state": "Submitted"
+   },
+   {
+    "s": "S09",
+    "t": "job_auto_complete",
+    "op": "job",
+    "job": "j09",
+    "state": "Completed"
+   },
+   {
+    "s": "S09",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "job": "j09"
+   },
+   {
+    "s": "S09",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 11
+   },
+   {
+    "s": "S09",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 12
+   },
+   {
+    "s": "S09",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "pos": 13
+   },
+   {
+    "s": "S09",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "pos": 14
+   },
+   {
+    "s": "S09",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "job": "j09"
+   },
+   {
+    "s": "S06",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "b2",
+    "job": "j06",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S06",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerA",
+    "job": "j06",
+    "amount": "800000",
+    "now": "1000"
+   },
+   {
+    "s": "S06",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "caller": "b2",
+    "job": "j06",
+    "x": "50000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S06",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "caller": "ch2",
+    "job": "j06",
+    "x": "40000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S06",
+    "t": "round_lock",
+    "op": "lock",
+    "job": "j06",
+    "now": "9970"
+   },
+   {
+    "s": "S06",
+    "t": "ref_void_too_early",
+    "op": "void",
+    "job": "j06",
+    "now": "9970",
+    "expect": "VoidTooEarly"
+   },
+   {
+    "s": "S06",
+    "t": "round_void",
+    "op": "void",
+    "job": "j06",
+    "now": "10361"
+   },
+   {
+    "s": "S06",
+    "t": "pos_refund_void",
+    "op": "claim",
+    "pos": 15
+   },
+   {
+    "s": "S06",
+    "t": "pos_refund_void",
+    "op": "claim",
+    "pos": 16
+   },
+   {
+    "s": "S06",
+    "t": "pos_refund_void",
+    "op": "claim",
+    "pos": 17
+   },
+   {
+    "s": "S06",
+    "t": "round_settle_void",
+    "op": "sweep",
+    "job": "j06"
+   },
+   {
+    "s": "S02",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerA",
+    "job": "j02",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S02",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerA",
+    "job": "j02",
+    "amount": "300000",
+    "now": "1000"
+   },
+   {
+    "s": "S02",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "backer2",
+    "job": "j02",
+    "amount": "1000000",
+    "now": "1000"
+   },
+   {
+    "s": "S02",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "caller": "b5",
+    "job": "j02",
+    "x": "120000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S02",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "caller": "ch1",
+    "job": "j02",
+    "x": "60000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S02",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j02",
+    "state": "Submitted"
+   },
+   {
+    "s": "S02",
+    "t": "job_reject_code",
+    "op": "job",
+    "job": "j02",
+    "state": "RejectPending"
+   },
+   {
+    "s": "S02",
+    "t": "job_finalize_reject",
+    "op": "job",
+    "job": "j02",
+    "state": "Rejected"
+   },
+   {
+    "s": "S02",
+    "t": "round_lock",
+    "op": "lock",
+    "job": "j02",
+    "now": "1000"
+   },
+   {
+    "s": "S02",
+    "t": "ref_void_has_outcome",
+    "op": "void",
+    "job": "j02",
+    "now": "10361",
+    "expect": "HasOutcome"
+   },
+   {
+    "s": "S02",
+    "t": "round_resolve_failed",
+    "op": "resolve",
+    "job": "j02"
+   },
+   {
+    "s": "S02",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "pos": 18
+   },
+   {
+    "s": "S02",
+    "t": "pos_claim_for_failed_senior",
+    "op": "claim",
+    "pos": 19
+   },
+   {
+    "s": "S02",
+    "t": "pos_claim_against_failed",
+    "op": "claim",
+    "pos": 20
+   },
+   {
+    "s": "S02",
+    "t": "pos_claim_against_failed",
+    "op": "claim",
+    "pos": 21
+   },
+   {
+    "s": "S02",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "job": "j02"
+   },
+   {
+    "s": "S05",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerB",
+    "job": "jB1",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S05",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerB",
+    "job": "jB1",
+    "amount": "300000",
+    "now": "1000"
+   },
+   {
+    "s": "S05",
+    "t": "job_submit",
+    "op": "job",
+    "job": "jB1",
+    "state": "Submitted"
+   },
+   {
+    "s": "S05",
+    "t": "job_complete_code",
+    "op": "job",
+    "job": "jB1",
+    "state": "Completed"
+   },
+   {
+    "s": "S05",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "job": "jB1"
+   },
+   {
+    "s": "S05",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 22
+   },
+   {
+    "s": "S05",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "job": "jB1"
+   },
+   {
+    "s": "S05",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerB",
+    "job": "jB2",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S05",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerB",
+    "job": "jB2",
+    "amount": "300000",
+    "now": "1000"
+   },
+   {
+    "s": "S05",
+    "t": "job_submit",
+    "op": "job",
+    "job": "jB2",
+    "state": "Submitted"
+   },
+   {
+    "s": "S05",
+    "t": "job_complete_code",
+    "op": "job",
+    "job": "jB2",
+    "state": "Completed"
+   },
+   {
+    "s": "S05",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "job": "jB2"
+   },
+   {
+    "s": "S05",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "pos": 23
+   },
+   {
+    "s": "S05",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "job": "jB2"
+   },
+   {
+    "s": "S05",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "b3",
+    "job": "j05",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S05",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerB",
+    "job": "j05",
+    "amount": "800000",
+    "now": "1000"
+   },
+   {
+    "s": "S05",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "caller": "ch2",
+    "job": "j05",
+    "x": "100000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000"
+   },
+   {
+    "s": "S05",
+    "t": "job_expire",
+    "op": "job",
+    "job": "j05",
+    "state": "Expired"
+   },
+   {
+    "s": "S05",
+    "t": "round_resolve_failed_open",
+    "op": "resolve",
+    "job": "j05"
+   },
+   {
+    "s": "S05",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "pos": 24
+   },
+   {
+    "s": "S05",
+    "t": "pos_claim_against_failed",
+    "op": "claim",
+    "pos": 25
+   },
+   {
+    "s": "S05",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "job": "j05"
+   },
+   {
+    "s": "S04",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerB",
+    "job": "j04",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S04",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerB",
+    "job": "j04",
+    "amount": "200000",
+    "now": "1000"
+   },
+   {
+    "s": "S04",
+    "t": "ref_not_insurable",
+    "op": "openCover",
+    "caller": "b4",
+    "job": "j04",
+    "x": "10000",
+    "maxPrice": "300000000000000000",
+    "lockS": "9120",
+    "now": "1000",
+    "expect": "NotInsurable"
+   },
+   {
+    "s": "S04",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j04",
+    "state": "Submitted"
+   },
+   {
+    "s": "S04",
+    "t": "job_reject_jev",
+    "op": "job",
+    "job": "j04",
+    "state": "RejectPending"
+   },
+   {
+    "s": "S04",
+    "t": "job_dispute",
+    "op": "job",
+    "job": "j04",
+    "state": "Disputed"
+   },
+   {
+    "s": "S04",
+    "t": "job_rule_buyer",
+    "op": "job",
+    "job": "j04",
+    "state": "Rejected"
+   },
+   {
+    "s": "S04",
+    "t": "round_resolve_failed_open",
+    "op": "resolve",
+    "job": "j04"
+   },
+   {
+    "s": "S04",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "pos": 26
+   },
+   {
+    "s": "S04",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "job": "j04"
+   },
+   {
+    "s": "S12",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerC",
+    "job": "j12s",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S12",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerC",
+    "job": "j12s",
+    "amount": "100000",
+    "now": "1000"
+   },
+   {
+    "s": "S12",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j12s",
+    "state": "Submitted"
+   },
+   {
+    "s": "S12",
+    "t": "job_reject_code",
+    "op": "job",
+    "job": "j12s",
+    "state": "RejectPending"
+   },
+   {
+    "s": "S12",
+    "t": "job_dispute",
+    "op": "job",
+    "job": "j12s",
+    "state": "Disputed"
+   },
+   {
+    "s": "S12",
+    "t": "job_stale_dispute",
+    "op": "job",
+    "job": "j12s",
+    "state": "Rejected"
+   },
+   {
+    "s": "S12",
+    "t": "round_resolve_failed_open",
+    "op": "resolve",
+    "job": "j12s"
+   },
+   {
+    "s": "S12",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "pos": 27
+   },
+   {
+    "s": "S12",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "job": "j12s"
+   },
+   {
+    "s": "S12",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerC",
+    "job": "j12c",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S12",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerC",
+    "job": "j12c",
+    "amount": "100000",
+    "now": "1000"
+   },
+   {
+    "s": "S12",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j12c",
+    "state": "Submitted"
+   },
+   {
+    "s": "S12",
+    "t": "job_cheat",
+    "op": "job",
+    "job": "j12c",
+    "state": "Cheated"
+   },
+   {
+    "s": "S12",
+    "t": "round_resolve_failed_open",
+    "op": "resolve",
+    "job": "j12c"
+   },
+   {
+    "s": "S12",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "pos": 28
+   },
+   {
+    "s": "S12",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "job": "j12c"
+   },
+   {
+    "s": "S12",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "sellerC",
+    "job": "j12v",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S12",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "caller": "sellerC",
+    "job": "j12v",
+    "amount": "100000",
+    "now": "1000"
+   },
+   {
+    "s": "S12",
+    "t": "round_void_open",
+    "op": "void",
+    "job": "j12v",
+    "now": "10361"
+   },
+   {
+    "s": "S12",
+    "t": "pos_refund_void",
+    "op": "claim",
+    "pos": 29
+   },
+   {
+    "s": "S12",
+    "t": "round_settle_void",
+    "op": "sweep",
+    "job": "j12v"
+   },
+   {
+    "s": "S10",
+    "t": "ref_pause_not_owner",
+    "op": "pause",
+    "caller": "stranger",
+    "expect": "NotOwner"
+   },
+   {
+    "s": "S10",
+    "t": "market_pause",
+    "op": "pause",
+    "caller": "owner"
+   },
+   {
+    "s": "S10",
+    "t": "ref_open_round_paused",
+    "op": "openRound",
+    "caller": "b4",
+    "job": "j10",
+    "classId": "code.typed",
+    "now": "1000",
+    "expect": "MarketNotActive"
+   },
+   {
+    "s": "S10",
+    "t": "market_unpause",
+    "op": "unpause",
+    "caller": "owner"
+   },
+   {
+    "s": "S10",
+    "t": "round_open",
+    "op": "openRound",
+    "caller": "stranger",
+    "job": "j10",
+    "classId": "code.typed",
+    "now": "1000"
+   },
+   {
+    "s": "S10",
+    "t": "ref_open_round_after_cutoff",
+    "op": "openRound",
+    "caller": "b4",
+    "job": "j10c",
+    "classId": "code.typed",
+    "now": "9970",
+    "expect": "AfterCutoff"
+   },
+   {
+    "s": "S10",
+    "t": "job_submit",
+    "op": "job",
+    "job": "j10n",
+    "state": "Submitted"
+   },
+   {
+    "s": "S10",
+    "t": "ref_open_round_not_accepted",
+    "op": "openRound",
+    "caller": "b5",
+    "job": "j10n",
+    "classId": "code.typed",
+    "now": "1000",
+    "expect": "JobNotAccepted"
+   },
+   {
+    "s": "S10",
+    "t": "market_pause",
+    "op": "pause",
+    "caller": "owner"
+   },
+   {
+    "s": "S10",
+    "t": "ref_position_paused",
+    "op": "openFor",
+    "caller": "sellerC",
+    "job": "j10",
+    "amount": "100000",
+    "now": "1000",
+    "expect": "MarketNotActive"
+   },
+   {
+    "s": "S10",
+    "t": "market_unpause",
+    "op": "unpause",
+    "caller": "owner"
+   },
+   {
+    "s": "S10",
+    "t": "market_shutdown_active",
+    "op": "shutdown",
+    "caller": "owner"
+   },
+   {
+    "s": "S10",
+    "t": "ref_unpause_after_shutdown",
+    "op": "unpause",
+    "caller": "owner",
+    "expect": "MarketShutdown"
+   },
+   {
+    "s": "S10",
+    "t": "ref_open_round_shutdown",
+    "op": "openRound",
+    "caller": "b1",
+    "job": "j10s",
+    "classId": "code.typed",
+    "now": "1000",
+    "expect": "MarketNotActive"
+   },
+   {
+    "s": "S10",
+    "t": "round_void_open",
+    "op": "void",
+    "job": "j10",
+    "now": "10361"
+   },
+   {
+    "s": "S10",
+    "t": "round_settle_void",
+    "op": "sweep",
+    "job": "j10"
+   }
+  ]
+ },
+ "expected": {
+  "steps": [
+   {
+    "i": 0,
+    "s": "S07",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 1,
+    "s": "S07",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 2,
+    "s": "S07",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "1"
+   },
+   {
+    "i": 3,
+    "s": "S07",
+    "t": "pos_withdraw_for_part",
+    "op": "withdrawFor",
+    "ok": true,
+    "error": null,
+    "value": "100000"
+   },
+   {
+    "i": 4,
+    "s": "S07",
+    "t": "ref_withdraw_not_owner",
+    "op": "withdrawFor",
+    "ok": false,
+    "error": "NotOwner",
+    "value": null
+   },
+   {
+    "i": 5,
+    "s": "S07",
+    "t": "pos_withdraw_for_all",
+    "op": "withdrawFor",
+    "ok": true,
+    "error": null,
+    "value": "300000"
+   },
+   {
+    "i": 6,
+    "s": "S07",
+    "t": "ref_claim_unresolved",
+    "op": "claim",
+    "ok": false,
+    "error": "NotResolved",
+    "value": null
+   },
+   {
+    "i": 7,
+    "s": "S07",
+    "t": "ref_lock_too_early",
+    "op": "lock",
+    "ok": false,
+    "error": "NotLockable",
+    "value": null
+   },
+   {
+    "i": 8,
+    "s": "S07",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 9,
+    "s": "S07",
+    "t": "job_auto_complete",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 10,
+    "s": "S07",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 11,
+    "s": "S07",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "500000"
+   },
+   {
+    "i": 12,
+    "s": "S07",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 13,
+    "s": "S11",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 14,
+    "s": "S11",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "2"
+   },
+   {
+    "i": 15,
+    "s": "S11",
+    "t": "ref_not_insurable",
+    "op": "openCover",
+    "ok": false,
+    "error": "NotInsurable",
+    "value": null
+   },
+   {
+    "i": 16,
+    "s": "S11",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 17,
+    "s": "S11",
+    "t": "job_complete_jev",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 18,
+    "s": "S11",
+    "t": "round_lock",
+    "op": "lock",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 19,
+    "s": "S11",
+    "t": "round_resolve_delivered",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 20,
+    "s": "S11",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "1000000"
+   },
+   {
+    "i": 21,
+    "s": "S11",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 22,
+    "s": "S01",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 23,
+    "s": "S01",
+    "t": "ref_open_round_twice",
+    "op": "openRound",
+    "ok": false,
+    "error": "RoundExists",
+    "value": null
+   },
+   {
+    "i": 24,
+    "s": "S01",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "3"
+   },
+   {
+    "i": 25,
+    "s": "S01",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "4"
+   },
+   {
+    "i": 26,
+    "s": "S01",
+    "t": "ref_position_zero",
+    "op": "openFor",
+    "ok": false,
+    "error": "ZeroAmount",
+    "value": null
+   },
+   {
+    "i": 27,
+    "s": "S01",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "ok": true,
+    "error": null,
+    "value": "5"
+   },
+   {
+    "i": 28,
+    "s": "S01",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "ok": true,
+    "error": null,
+    "value": "6"
+   },
+   {
+    "i": 29,
+    "s": "S01",
+    "t": "ref_against_by_seller",
+    "op": "openAgainst",
+    "ok": false,
+    "error": "SellerCannotChallenge",
+    "value": null
+   },
+   {
+    "i": 30,
+    "s": "S01",
+    "t": "ref_against_by_buyer",
+    "op": "openAgainst",
+    "ok": false,
+    "error": "BuyerUsesCover",
+    "value": null
+   },
+   {
+    "i": 31,
+    "s": "S01",
+    "t": "ref_cover_by_stranger",
+    "op": "openCover",
+    "ok": false,
+    "error": "NotBuyer",
+    "value": null
+   },
+   {
+    "i": 32,
+    "s": "S01",
+    "t": "ref_price_moved",
+    "op": "openAgainst",
+    "ok": false,
+    "error": "PriceAboveMax",
+    "value": null
+   },
+   {
+    "i": 33,
+    "s": "S01",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 34,
+    "s": "S01",
+    "t": "round_lock",
+    "op": "lock",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 35,
+    "s": "S01",
+    "t": "ref_position_locked",
+    "op": "openAgainst",
+    "ok": false,
+    "error": "RoundNotOpen",
+    "value": null
+   },
+   {
+    "i": 36,
+    "s": "S01",
+    "t": "ref_withdraw_locked",
+    "op": "withdrawFor",
+    "ok": false,
+    "error": "RoundNotOpen",
+    "value": null
+   },
+   {
+    "i": 37,
+    "s": "S01",
+    "t": "ref_resolve_not_ended",
+    "op": "resolve",
+    "ok": false,
+    "error": "NoOutcome",
+    "value": null
+   },
+   {
+    "i": 38,
+    "s": "S01",
+    "t": "job_complete_code",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 39,
+    "s": "S01",
+    "t": "round_resolve_delivered",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 40,
+    "s": "S01",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "1200000"
+   },
+   {
+    "i": 41,
+    "s": "S01",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "600000"
+   },
+   {
+    "i": 42,
+    "s": "S01",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 43,
+    "s": "S01",
+    "t": "ref_settle_unclaimed",
+    "op": "sweep",
+    "ok": false,
+    "error": "PositionsOutstanding",
+    "value": null
+   },
+   {
+    "i": 44,
+    "s": "S01",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 45,
+    "s": "S01",
+    "t": "ref_claim_twice",
+    "op": "claim",
+    "ok": false,
+    "error": "PositionNotActive",
+    "value": null
+   },
+   {
+    "i": 46,
+    "s": "S01",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 47,
+    "s": "S03",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 48,
+    "s": "S03",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "7"
+   },
+   {
+    "i": 49,
+    "s": "S03",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "ok": true,
+    "error": null,
+    "value": "8"
+   },
+   {
+    "i": 50,
+    "s": "S03",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 51,
+    "s": "S03",
+    "t": "job_reject_jev",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 52,
+    "s": "S03",
+    "t": "job_dispute",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 53,
+    "s": "S03",
+    "t": "job_rule_seller",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 54,
+    "s": "S03",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 55,
+    "s": "S03",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "700000"
+   },
+   {
+    "i": 56,
+    "s": "S03",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 57,
+    "s": "S03",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 58,
+    "s": "S08",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 59,
+    "s": "S08",
+    "t": "ref_collateral",
+    "op": "openAgainst",
+    "ok": false,
+    "error": "Undercollateralised",
+    "value": null
+   },
+   {
+    "i": 60,
+    "s": "S08",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "9"
+   },
+   {
+    "i": 61,
+    "s": "S08",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "ok": true,
+    "error": null,
+    "value": "10"
+   },
+   {
+    "i": 62,
+    "s": "S08",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 63,
+    "s": "S08",
+    "t": "job_complete_code",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 64,
+    "s": "S08",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 65,
+    "s": "S08",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "450000"
+   },
+   {
+    "i": 66,
+    "s": "S08",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 67,
+    "s": "S08",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 68,
+    "s": "S09",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 69,
+    "s": "S09",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "11"
+   },
+   {
+    "i": 70,
+    "s": "S09",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "12"
+   },
+   {
+    "i": 71,
+    "s": "S09",
+    "t": "ref_cover_cap",
+    "op": "openCover",
+    "ok": false,
+    "error": "CoverCap",
+    "value": null
+   },
+   {
+    "i": 72,
+    "s": "S09",
+    "t": "ref_against_cap",
+    "op": "openAgainst",
+    "ok": false,
+    "error": "AgainstCap",
+    "value": null
+   },
+   {
+    "i": 73,
+    "s": "S09",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "ok": true,
+    "error": null,
+    "value": "13"
+   },
+   {
+    "i": 74,
+    "s": "S09",
+    "t": "ref_senior_cap",
+    "op": "openAgainst",
+    "ok": false,
+    "error": "SeniorCap",
+    "value": null
+   },
+   {
+    "i": 75,
+    "s": "S09",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "ok": true,
+    "error": null,
+    "value": "14"
+   },
+   {
+    "i": 76,
+    "s": "S09",
+    "t": "ref_withdraw_breaks_collateral",
+    "op": "withdrawFor",
+    "ok": false,
+    "error": "SeniorCap",
+    "value": null
+   },
+   {
+    "i": 77,
+    "s": "S09",
+    "t": "ref_withdraw_against",
+    "op": "withdrawFor",
+    "ok": false,
+    "error": "NotFor",
+    "value": null
+   },
+   {
+    "i": 78,
+    "s": "S09",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 79,
+    "s": "S09",
+    "t": "job_auto_complete",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 80,
+    "s": "S09",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 81,
+    "s": "S09",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "211875"
+   },
+   {
+    "i": 82,
+    "s": "S09",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "3178125"
+   },
+   {
+    "i": 83,
+    "s": "S09",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 84,
+    "s": "S09",
+    "t": "pos_claim_against_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 85,
+    "s": "S09",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 86,
+    "s": "S06",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 87,
+    "s": "S06",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "15"
+   },
+   {
+    "i": 88,
+    "s": "S06",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "ok": true,
+    "error": null,
+    "value": "16"
+   },
+   {
+    "i": 89,
+    "s": "S06",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "ok": true,
+    "error": null,
+    "value": "17"
+   },
+   {
+    "i": 90,
+    "s": "S06",
+    "t": "round_lock",
+    "op": "lock",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 91,
+    "s": "S06",
+    "t": "ref_void_too_early",
+    "op": "void",
+    "ok": false,
+    "error": "VoidTooEarly",
+    "value": null
+   },
+   {
+    "i": 92,
+    "s": "S06",
+    "t": "round_void",
+    "op": "void",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 93,
+    "s": "S06",
+    "t": "pos_refund_void",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "800000"
+   },
+   {
+    "i": 94,
+    "s": "S06",
+    "t": "pos_refund_void",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "51000"
+   },
+   {
+    "i": 95,
+    "s": "S06",
+    "t": "pos_refund_void",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "41000"
+   },
+   {
+    "i": 96,
+    "s": "S06",
+    "t": "round_settle_void",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 97,
+    "s": "S02",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 98,
+    "s": "S02",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "18"
+   },
+   {
+    "i": 99,
+    "s": "S02",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "19"
+   },
+   {
+    "i": 100,
+    "s": "S02",
+    "t": "pos_open_cover",
+    "op": "openCover",
+    "ok": true,
+    "error": null,
+    "value": "20"
+   },
+   {
+    "i": 101,
+    "s": "S02",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "ok": true,
+    "error": null,
+    "value": "21"
+   },
+   {
+    "i": 102,
+    "s": "S02",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 103,
+    "s": "S02",
+    "t": "job_reject_code",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 104,
+    "s": "S02",
+    "t": "job_finalize_reject",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 105,
+    "s": "S02",
+    "t": "round_lock",
+    "op": "lock",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 106,
+    "s": "S02",
+    "t": "ref_void_has_outcome",
+    "op": "void",
+    "ok": false,
+    "error": "HasOutcome",
+    "value": null
+   },
+   {
+    "i": 107,
+    "s": "S02",
+    "t": "round_resolve_failed",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 108,
+    "s": "S02",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 109,
+    "s": "S02",
+    "t": "pos_claim_for_failed_senior",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "95589"
+   },
+   {
+    "i": 110,
+    "s": "S02",
+    "t": "pos_claim_against_failed",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "922941"
+   },
+   {
+    "i": 111,
+    "s": "S02",
+    "t": "pos_claim_against_failed",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "461470"
+   },
+   {
+    "i": 112,
+    "s": "S02",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 113,
+    "s": "S05",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 114,
+    "s": "S05",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "22"
+   },
+   {
+    "i": 115,
+    "s": "S05",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 116,
+    "s": "S05",
+    "t": "job_complete_code",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 117,
+    "s": "S05",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 118,
+    "s": "S05",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "300000"
+   },
+   {
+    "i": 119,
+    "s": "S05",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 120,
+    "s": "S05",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 121,
+    "s": "S05",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "23"
+   },
+   {
+    "i": 122,
+    "s": "S05",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 123,
+    "s": "S05",
+    "t": "job_complete_code",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 124,
+    "s": "S05",
+    "t": "round_resolve_delivered_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 125,
+    "s": "S05",
+    "t": "pos_claim_for_delivered",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "300000"
+   },
+   {
+    "i": 126,
+    "s": "S05",
+    "t": "round_settle_delivered",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 127,
+    "s": "S05",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 128,
+    "s": "S05",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "24"
+   },
+   {
+    "i": 129,
+    "s": "S05",
+    "t": "pos_open_against",
+    "op": "openAgainst",
+    "ok": true,
+    "error": null,
+    "value": "25"
+   },
+   {
+    "i": 130,
+    "s": "S05",
+    "t": "job_expire",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 131,
+    "s": "S05",
+    "t": "round_resolve_failed_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 132,
+    "s": "S05",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "538844"
+   },
+   {
+    "i": 133,
+    "s": "S05",
+    "t": "pos_claim_against_failed",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "361156"
+   },
+   {
+    "i": 134,
+    "s": "S05",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 135,
+    "s": "S04",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 136,
+    "s": "S04",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "26"
+   },
+   {
+    "i": 137,
+    "s": "S04",
+    "t": "ref_not_insurable",
+    "op": "openCover",
+    "ok": false,
+    "error": "NotInsurable",
+    "value": null
+   },
+   {
+    "i": 138,
+    "s": "S04",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 139,
+    "s": "S04",
+    "t": "job_reject_jev",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 140,
+    "s": "S04",
+    "t": "job_dispute",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 141,
+    "s": "S04",
+    "t": "job_rule_buyer",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 142,
+    "s": "S04",
+    "t": "round_resolve_failed_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 143,
+    "s": "S04",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "200000"
+   },
+   {
+    "i": 144,
+    "s": "S04",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 145,
+    "s": "S12",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 146,
+    "s": "S12",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "27"
+   },
+   {
+    "i": 147,
+    "s": "S12",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 148,
+    "s": "S12",
+    "t": "job_reject_code",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 149,
+    "s": "S12",
+    "t": "job_dispute",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 150,
+    "s": "S12",
+    "t": "job_stale_dispute",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 151,
+    "s": "S12",
+    "t": "round_resolve_failed_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 152,
+    "s": "S12",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "100000"
+   },
+   {
+    "i": 153,
+    "s": "S12",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 154,
+    "s": "S12",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 155,
+    "s": "S12",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "28"
+   },
+   {
+    "i": 156,
+    "s": "S12",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 157,
+    "s": "S12",
+    "t": "job_cheat",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 158,
+    "s": "S12",
+    "t": "round_resolve_failed_open",
+    "op": "resolve",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 159,
+    "s": "S12",
+    "t": "pos_claim_for_failed_junior",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "100000"
+   },
+   {
+    "i": 160,
+    "s": "S12",
+    "t": "round_settle_failed",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 161,
+    "s": "S12",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 162,
+    "s": "S12",
+    "t": "pos_open_for",
+    "op": "openFor",
+    "ok": true,
+    "error": null,
+    "value": "29"
+   },
+   {
+    "i": 163,
+    "s": "S12",
+    "t": "round_void_open",
+    "op": "void",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 164,
+    "s": "S12",
+    "t": "pos_refund_void",
+    "op": "claim",
+    "ok": true,
+    "error": null,
+    "value": "100000"
+   },
+   {
+    "i": 165,
+    "s": "S12",
+    "t": "round_settle_void",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   },
+   {
+    "i": 166,
+    "s": "S10",
+    "t": "ref_pause_not_owner",
+    "op": "pause",
+    "ok": false,
+    "error": "NotOwner",
+    "value": null
+   },
+   {
+    "i": 167,
+    "s": "S10",
+    "t": "market_pause",
+    "op": "pause",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 168,
+    "s": "S10",
+    "t": "ref_open_round_paused",
+    "op": "openRound",
+    "ok": false,
+    "error": "MarketNotActive",
+    "value": null
+   },
+   {
+    "i": 169,
+    "s": "S10",
+    "t": "market_unpause",
+    "op": "unpause",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 170,
+    "s": "S10",
+    "t": "round_open",
+    "op": "openRound",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 171,
+    "s": "S10",
+    "t": "ref_open_round_after_cutoff",
+    "op": "openRound",
+    "ok": false,
+    "error": "AfterCutoff",
+    "value": null
+   },
+   {
+    "i": 172,
+    "s": "S10",
+    "t": "job_submit",
+    "op": "job",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 173,
+    "s": "S10",
+    "t": "ref_open_round_not_accepted",
+    "op": "openRound",
+    "ok": false,
+    "error": "JobNotAccepted",
+    "value": null
+   },
+   {
+    "i": 174,
+    "s": "S10",
+    "t": "market_pause",
+    "op": "pause",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 175,
+    "s": "S10",
+    "t": "ref_position_paused",
+    "op": "openFor",
+    "ok": false,
+    "error": "MarketNotActive",
+    "value": null
+   },
+   {
+    "i": 176,
+    "s": "S10",
+    "t": "market_unpause",
+    "op": "unpause",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 177,
+    "s": "S10",
+    "t": "market_shutdown_active",
+    "op": "shutdown",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 178,
+    "s": "S10",
+    "t": "ref_unpause_after_shutdown",
+    "op": "unpause",
+    "ok": false,
+    "error": "MarketShutdown",
+    "value": null
+   },
+   {
+    "i": 179,
+    "s": "S10",
+    "t": "ref_open_round_shutdown",
+    "op": "openRound",
+    "ok": false,
+    "error": "MarketNotActive",
+    "value": null
+   },
+   {
+    "i": 180,
+    "s": "S10",
+    "t": "round_void_open",
+    "op": "void",
+    "ok": true,
+    "error": null,
+    "value": null
+   },
+   {
+    "i": 181,
+    "s": "S10",
+    "t": "round_settle_void",
+    "op": "sweep",
+    "ok": true,
+    "error": null,
+    "value": "0"
+   }
+  ],
+  "treasury": "9000",
+  "held": "0",
+  "conserved": true,
+  "balances": {
+   "b1": "-141000",
+   "b2": "0",
+   "b3": "-201000",
+   "b4": "-101000",
+   "b5": "801941",
+   "backer1": "100000",
+   "backer2": "-726286",
+   "ch1": "197470",
+   "ch2": "260156",
+   "sellerA": "61875",
+   "sellerB": "-261156",
+   "sellerC": "0"
+  },
+  "positions": [
+   {
+    "id": 0,
+    "round": "j07",
+    "owner": "sellerA",
+    "side": "FOR",
+    "stake": "500000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 1,
+    "round": "j07",
+    "owner": "backer1",
+    "side": "FOR",
+    "stake": "0",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 2,
+    "round": "j11a",
+    "owner": "sellerA",
+    "side": "FOR",
+    "stake": "1000000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 3,
+    "round": "j01",
+    "owner": "sellerA",
+    "side": "FOR",
+    "stake": "1000000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 4,
+    "round": "j01",
+    "owner": "backer1",
+    "side": "FOR",
+    "stake": "500000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 5,
+    "round": "j01",
+    "owner": "b3",
+    "side": "COVER",
+    "stake": "200000",
+    "fee": "1000",
+    "p": "276888611637142312",
+    "G": "722312",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 6,
+    "round": "j01",
+    "owner": "ch1",
+    "side": "AGAINST",
+    "stake": "100000",
+    "fee": "1000",
+    "p": "276888611637142312",
+    "G": "361156",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 7,
+    "round": "j03",
+    "owner": "sellerA",
+    "side": "FOR",
+    "stake": "600000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 8,
+    "round": "j03",
+    "owner": "b4",
+    "side": "COVER",
+    "stake": "100000",
+    "fee": "1000",
+    "p": "215782455152456722",
+    "G": "463429",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 9,
+    "round": "j08",
+    "owner": "sellerA",
+    "side": "FOR",
+    "stake": "400000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 10,
+    "round": "j08",
+    "owner": "ch1",
+    "side": "AGAINST",
+    "stake": "50000",
+    "fee": "1000",
+    "p": "176848208502452444",
+    "G": "282728",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 11,
+    "round": "j09",
+    "owner": "sellerA",
+    "side": "FOR",
+    "stake": "200000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 12,
+    "round": "j09",
+    "owner": "backer2",
+    "side": "FOR",
+    "stake": "3000000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 13,
+    "round": "j09",
+    "owner": "b1",
+    "side": "COVER",
+    "stake": "140000",
+    "fee": "1000",
+    "p": "149849400309358167",
+    "G": "934271",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 14,
+    "round": "j09",
+    "owner": "ch1",
+    "side": "AGAINST",
+    "stake": "50000",
+    "fee": "1000",
+    "p": "149849400309358167",
+    "G": "333668",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 15,
+    "round": "j06",
+    "owner": "sellerA",
+    "side": "FOR",
+    "stake": "800000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 16,
+    "round": "j06",
+    "owner": "b2",
+    "side": "COVER",
+    "stake": "50000",
+    "fee": "1000",
+    "p": "130019119134959248",
+    "G": "384558",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 17,
+    "round": "j06",
+    "owner": "ch2",
+    "side": "AGAINST",
+    "stake": "40000",
+    "fee": "1000",
+    "p": "130019119134959248",
+    "G": "307647",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 18,
+    "round": "j02",
+    "owner": "sellerA",
+    "side": "FOR",
+    "stake": "300000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 19,
+    "round": "j02",
+    "owner": "backer2",
+    "side": "FOR",
+    "stake": "1000000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 20,
+    "round": "j02",
+    "owner": "b5",
+    "side": "COVER",
+    "stake": "120000",
+    "fee": "1000",
+    "p": "130019119134959248",
+    "G": "922941",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 21,
+    "round": "j02",
+    "owner": "ch1",
+    "side": "AGAINST",
+    "stake": "60000",
+    "fee": "1000",
+    "p": "130019119134959248",
+    "G": "461470",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 22,
+    "round": "jB1",
+    "owner": "sellerB",
+    "side": "FOR",
+    "stake": "300000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 23,
+    "round": "jB2",
+    "owner": "sellerB",
+    "side": "FOR",
+    "stake": "300000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 24,
+    "round": "j05",
+    "owner": "sellerB",
+    "side": "FOR",
+    "stake": "800000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 25,
+    "round": "j05",
+    "owner": "ch2",
+    "side": "AGAINST",
+    "stake": "100000",
+    "fee": "1000",
+    "p": "276888611637142312",
+    "G": "361156",
+    "junior": false,
+    "active": false
+   },
+   {
+    "id": 26,
+    "round": "j04",
+    "owner": "sellerB",
+    "side": "FOR",
+    "stake": "200000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 27,
+    "round": "j12s",
+    "owner": "sellerC",
+    "side": "FOR",
+    "stake": "100000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 28,
+    "round": "j12c",
+    "owner": "sellerC",
+    "side": "FOR",
+    "stake": "100000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   },
+   {
+    "id": 29,
+    "round": "j12v",
+    "owner": "sellerC",
+    "side": "FOR",
+    "stake": "100000",
+    "fee": "0",
+    "p": "0",
+    "G": "0",
+    "junior": true,
+    "active": false
+   }
+  ],
+  "rounds": {
+   "j07": {
+    "state": "Settled",
+    "Fj": "500000",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   },
+   "j11a": {
+    "state": "Settled",
+    "Fj": "1000000",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   },
+   "j01": {
+    "state": "Settled",
+    "Fj": "1000000",
+    "Fs": "500000",
+    "X": "300000",
+    "GA": "361156",
+    "GC": "722312",
+    "fees": "2000",
+    "held": "0"
+   },
+   "j03": {
+    "state": "Settled",
+    "Fj": "600000",
+    "Fs": "0",
+    "X": "100000",
+    "GA": "0",
+    "GC": "463429",
+    "fees": "1000",
+    "held": "0"
+   },
+   "j08": {
+    "state": "Settled",
+    "Fj": "400000",
+    "Fs": "0",
+    "X": "50000",
+    "GA": "282728",
+    "GC": "0",
+    "fees": "1000",
+    "held": "0"
+   },
+   "j09": {
+    "state": "Settled",
+    "Fj": "200000",
+    "Fs": "3000000",
+    "X": "190000",
+    "GA": "333668",
+    "GC": "934271",
+    "fees": "2000",
+    "held": "0"
+   },
+   "j06": {
+    "state": "Settled",
+    "Fj": "800000",
+    "Fs": "0",
+    "X": "90000",
+    "GA": "307647",
+    "GC": "384558",
+    "fees": "2000",
+    "held": "0"
+   },
+   "j02": {
+    "state": "Settled",
+    "Fj": "300000",
+    "Fs": "1000000",
+    "X": "180000",
+    "GA": "461470",
+    "GC": "922941",
+    "fees": "2000",
+    "held": "0"
+   },
+   "jB1": {
+    "state": "Settled",
+    "Fj": "300000",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   },
+   "jB2": {
+    "state": "Settled",
+    "Fj": "300000",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   },
+   "j05": {
+    "state": "Settled",
+    "Fj": "800000",
+    "Fs": "0",
+    "X": "100000",
+    "GA": "361156",
+    "GC": "0",
+    "fees": "1000",
+    "held": "0"
+   },
+   "j04": {
+    "state": "Settled",
+    "Fj": "200000",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   },
+   "j12s": {
+    "state": "Settled",
+    "Fj": "100000",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   },
+   "j12c": {
+    "state": "Settled",
+    "Fj": "100000",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   },
+   "j12v": {
+    "state": "Settled",
+    "Fj": "100000",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   },
+   "j10": {
+    "state": "Settled",
+    "Fj": "0",
+    "Fs": "0",
+    "X": "0",
+    "GA": "0",
+    "GC": "0",
+    "fees": "0",
+    "held": "0"
+   }
+  },
+  "books": {
+   "sellera|code.typed": {
+    "kEff": "6",
+    "f": "1",
+    "distinctBuyers": "5",
+    "seniorOpen": "0"
+   },
+   "sellerb|code.typed": {
+    "kEff": "2",
+    "f": "2",
+    "distinctBuyers": "2",
+    "seniorOpen": "0"
+   },
+   "sellerc|code.typed": {
+    "kEff": "0",
+    "f": "2",
+    "distinctBuyers": "0",
+    "seniorOpen": "0"
+   }
+  },
+  "market": "Shutdown"
+ }
+}
