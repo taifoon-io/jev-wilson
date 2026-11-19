@@ -133,7 +133,8 @@
     "vectors:bets": "node --experimental-strip-types --no-warnings scripts/gen-bets-vectors.ts",
     "vectors:economy": "node --experimental-strip-types --no-warnings scripts/gen-economy-grid.ts",
     "calibration:grid": "node --experimental-strip-types --no-warnings scripts/gen-grid-calibration.ts",
-    "examples:economy": "node --experimental-strip-types --no-warnings scripts/economy-examples.ts"
+    "examples:economy": "node --experimental-strip-types --no-warnings scripts/economy-examples.ts",
+    "prepublishOnly": "pack-guard"
   },
   "peerDependencies": {
     "@typesafe-ai/sdk": "^0.6.0"
